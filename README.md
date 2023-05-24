@@ -1,4 +1,4 @@
-# vue3-bplan-new
+# vue3-bplan-app
 
 ## Project setup
 ```
