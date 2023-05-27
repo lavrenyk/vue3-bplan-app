@@ -13,7 +13,7 @@
                   <div class="text-center mb-7">
                     <a class="d-flex flex-center text-decoration-none mb-4" href="../../../index.html">
                       <div class="d-flex align-items-center fw-bolder fs-5 d-inline-block">
-                        <img src="@/assets/img/icons/bplan-logo.png" alt="phoenix" width="58"></div>
+                        <img src="@/assets/img/icons/bplan-logo.png" alt="phoenix" width="80"></div>
                     </a>
                     <h3 class="text-1000">С возвращением!</h3>
                     <p class="text-700">Введите данные своего аккаунта</p>

@@ -3,7 +3,7 @@
     <nav class="navbar navbar-expand-lg container-small py-0 px-3 px-lg-7 px-xxl-3">
       <a class="navbar-brand flex-1 flex-lg-grow-0" href="@/index.html">
         <div class="d-flex align-items-center">
-          <img src="@/assets/img/icons/bplan-logo4.png" alt="phoenix" width="60">
+          <img src="@/assets/img/icons/bplan-logo.png" alt="phoenix" width="60">
           <p class="logo-text ms-2">bplan.app</p>
         </div>
       </a>
@@ -130,9 +130,10 @@
           <a class="btn btn-link text-900 order-1 order-lg-0 ps-3 me-2" href="@/pages/authentication/simple/sign-in.html">
             Регистрация
           </a>
-          <a class="btn btn-phoenix-primary order-0" href="@/pages/authentication/simple/sign-up.html">
+          <router-link to="/login"
+            class="btn btn-phoenix-primary order-0">
             <span class="fw-bold">Вход</span>
-          </a>
+          </router-link>
         </div>
       </div>
     </nav>
