@@ -10,7 +10,7 @@ export default {
     getCurrentUser: state => { return state.currentUser },
   },
 
-  nutations: {
+  mutations: {
     setCurrentUser(state, payload) {
       state.currentUser = payload;
     },

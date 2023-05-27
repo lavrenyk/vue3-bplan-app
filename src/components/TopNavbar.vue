@@ -71,7 +71,7 @@
         </div>
         <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
           <li class="nav-item border-bottom border-bottom-lg-0">
-            <router-link to="/business-planning"
+            <router-link to="#"
               class="nav-link lh-1 py-0 fs--1 fw-bold text-uppercase py-4  active" aria-current="page">
               Планируем
             </router-link>

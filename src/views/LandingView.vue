@@ -55,16 +55,16 @@
       <div class="position-absolute w-100 h-100 start-0 end-0" style="bottom: -350px; transform: skewY(-8deg);
         background: linear-gradient(102.27deg, #38ABFF 4.69%, #3874FF 106.27%)">
       </div>
-      <div class="bg-holder" style="background-image:url(@/assets/img/bg/bg-left-24.png);background-size:auto;background-position:left center;">
+      <div class="bg-holder" style="background-image: 'url(' +  required('@/assets/img/bg/bg-left-24.png');background-size:auto;background-position:left center;">
       </div>
       <!--/.bg-holder-->
-      <div class="bg-holder" style="background-image:url(@/assets/img/bg/bg-right-24.png);background-size:auto;background-position:right center;">
+      <div class="bg-holder" style="background-image: 'url(' +  required('@/assets/img/bg/bg-right-24.png');background-size:auto;background-position:right center;">
       </div>
       <!--/.bg-holder-->
       <div class="row justify-content-center">
         <div class="col-12 text-center">
           <div class="card py-md-9 px-md-13 border-0 z-index-1 shadow-lg">
-            <div class="bg-holder" style="background-image:url(@/assets/img/bg/bg-38.png);background-position:center;background-size:100%;">
+            <div class="bg-holder" style="background-image: 'url(' +  required('@/assets/img/bg/bg-38.png');background-position:center;background-size:100%;">
             </div>
             <!--/.bg-holder-->
             <div class="card-body position-relative">

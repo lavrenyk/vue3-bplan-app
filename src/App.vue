@@ -17,7 +17,6 @@ export default defineComponent({
   },
   computed: {
     layout() {
-      console.log(this.$route)
       return (this.$route.meta.layout || 'empty') + '-layout'
     }
   }

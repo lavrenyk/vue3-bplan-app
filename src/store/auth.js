@@ -1,5 +1,5 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
-// import router  from "@/router";
+import router  from "@/router";
 import { auth } from "@/firebase";
 
 export default {
@@ -22,7 +22,8 @@ export default {
         return
       }
 
-      commit("SET_CURRENT_USER", auth.currentUser);
+      commit("setCurrentUser", auth.currentUser);
+      router.push('/')
 
       return true;
     }
