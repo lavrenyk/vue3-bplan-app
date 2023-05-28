@@ -1,12 +1,13 @@
 <template>
   <div class="bg-white sticky-top landing-navbar" data-navbar-shadow-on-scroll="data-navbar-shadow-on-scroll">
     <nav class="navbar navbar-expand-lg container-small py-0 px-3 px-lg-7 px-xxl-3">
-      <a class="navbar-brand flex-1 flex-lg-grow-0" href="@/index.html">
+      <router-link
+        class="navbar-brand flex-1 flex-lg-grow-0" to="/">
         <div class="d-flex align-items-center">
-          <img src="@/assets/img/icons/bplan-logo.png" alt="phoenix" width="60">
+          <img src="@/assets/img/icons/bplan-logo.png" alt="Bplan" width="60">
           <p class="logo-text ms-2">bplan.app</p>
         </div>
-      </a>
+      </router-link>
       <div class="d-lg-none">
         <div class="theme-control-toggle fa-icon-wait px-2">
           <input class="form-check-input ms-0 theme-control-toggle-input"
@@ -127,9 +128,10 @@
               </label>
             </div>
           </div>
-          <a class="btn btn-link text-900 order-1 order-lg-0 ps-3 me-2" href="@/pages/authentication/simple/sign-in.html">
+          <router-link to="/registration"
+            class="btn btn-link text-900 order-1 order-lg-0 ps-3 me-2">
             Регистрация
-          </a>
+          </router-link>
           <router-link to="/login"
             class="btn btn-phoenix-primary order-0">
             <span class="fw-bold">Вход</span>

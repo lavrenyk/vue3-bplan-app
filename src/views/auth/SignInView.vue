@@ -11,10 +11,12 @@
               <div class="col mx-auto">
                 <div class="auth-form-box">
                   <div class="text-center mb-7">
-                    <a class="d-flex flex-center text-decoration-none mb-4" href="../../../index.html">
+                    <router-link to="/"
+                      class="d-flex flex-center text-decoration-none mb-4 me-4">
                       <div class="d-flex align-items-center fw-bolder fs-5 d-inline-block">
-                        <img src="@/assets/img/icons/bplan-logo.png" alt="phoenix" width="80"></div>
-                    </a>
+                        <img src="@/assets/img/icons/bplan-logo.png" alt="Bplan" width="80"></div>
+                        <p class="logo-text">BPlan.app</p>
+                    </router-link>
                     <h3 class="text-1000">С возвращением!</h3>
                     <p class="text-700">Введите данные своего аккаунта</p>
                   </div>
@@ -98,9 +100,9 @@
                     <span class="spinner-grow spinner-grow-sm" role="status"></span>
                   </button>
                   <div class="text-center">
-                    <a class="fs--1 fw-bold" href="#">
+                    <router-link to="/registration" class="fs--1 fw-bold">
                       Зарегистрироваться
-                    </a>
+                    </router-link>
                   </div>
                 </div>
               </div>
@@ -147,8 +149,8 @@ export default defineComponent({
       const loginResult = await this.$store.dispatch('login', signInData);
 
       if (loginResult) {
-        console.log("Login granted!");
-        // this.$router.push('/');
+        this.loading = false;
+        this.$router.push('/');
       }
 
       this.loading = false;

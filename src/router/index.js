@@ -14,9 +14,15 @@ const routes = [
     component: () => import('@/views/auth/SignInView.vue')
   },
   {
+    path: '/registration',
+    name: 'sign-up',
+    meta: {layout: 'empty'},
+    component: () => import('@/views/auth/SignUpView.vue')
+  },
+  {
     path: '/dashboard',
     name: 'dashboard',
-    meta: {layout: 'main', auth: true},
+    meta: {layout: 'app', auth: true},
     component: () => import('@/views/app/DashboardView.vue')
   },
 ]
