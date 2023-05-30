@@ -1157,7 +1157,15 @@
         </ul>
       </div>
     </div>
-    <div class="navbar-vertical-footer"><button class="btn navbar-vertical-toggle border-0 fw-semi-bold w-100 white-space-nowrap d-flex align-items-center"><span class="uil uil-left-arrow-to-left fs-0"></span><span class="uil uil-arrow-from-right fs-0"></span><span class="navbar-vertical-footer-text ms-2">Collapsed View</span></button></div>
+    <div class="navbar-vertical-footer">
+      <button @click="verticalNavbarCollapsedToggle"
+        class="btn navbar-vertical-toggle border-0 fw-semi-bold w-100 white-space-nowrap d-flex align-items-center">
+        <i class="fa-solid fa-arrows-left-right-to-line"></i>
+        <span class="navbar-vertical-footer-text ms-2">
+          Свернуть меню
+        </span>
+      </button>
+    </div>
   </nav>
 </template>
 
@@ -1167,7 +1175,20 @@
 //     document.querySelector('body').classList.add(`navbar-${navbarStyle}`);
 // }
 export default {
-
+  data: () => ({
+    navbarCollapsed: false,
+  }),
+  methods: {
+    verticalNavbarCollapsedToggle() {
+      if (this.navbarCollapsed) {
+        document.body.classList.remove('navbar-vertical-collapsed');
+        this.navbarCollapsed = !this.navbarCollapsed;
+      } else {
+        document.body.classList.add('navbar-vertical-collapsed');
+        this.navbarCollapsed = !this.navbarCollapsed;
+      }
+    }
+  }
 }
 </script>
 

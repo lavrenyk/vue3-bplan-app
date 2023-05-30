@@ -1,9 +1,10 @@
 <template>
   <main class="alternate-landing" style="--phoenix-scroll-margin-top: 1.2rem;">
-    <the-vertical-navbar />
+    <the-app-vertical-navbar />
     <the-app-top-navbar />
     <div class="content">
       <router-view/>
+      <the-app-footer />
     </div>
   </main>
 </template>
@@ -11,12 +12,14 @@
 <script>
 import { defineComponent } from 'vue';
 import TheAppTopNavbar from '@/components/TheAppTopNavbar.vue';
-import TheVerticalNavbar from '@/components/TheVerticalNavbar.vue';
+import TheAppVerticalNavbar from '@/components/TheAppVerticalNavbar.vue';
+import TheAppFooter from '@/components/TheAppFooter.vue';
 
 export default defineComponent({
   components: {
     TheAppTopNavbar,
-    TheVerticalNavbar
+    TheAppVerticalNavbar,
+    TheAppFooter,
   },
   mounted() {
     var body = document.querySelector('body');

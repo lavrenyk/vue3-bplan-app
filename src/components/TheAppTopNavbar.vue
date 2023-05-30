@@ -4,9 +4,51 @@
       <div class="navbar-logo">
         <button class="btn navbar-toggler navbar-toggler-humburger-icon hover-bg-transparent" type="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalCollapse" aria-controls="navbarVerticalCollapse" aria-expanded="false" aria-label="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
         <router-link to="/" class="navbar-brand navbar-brand">
-          BPlan composer
+          BPlan COMPOSER
         </router-link>
       </div>
+      <div class="collapse navbar-collapse navbar-top-collapse order-1 order-lg-0 justify-content-start" id="navbarTopCollapse">
+          <ul class="navbar-nav navbar-nav-top" >
+            <li class="nav-item mt-0">
+              <a class="nav-link" href="#!" role="button">
+                <i class="fa-solid fa-person-chalkboard me-2"></i>
+                Презентация
+              </a>
+            </li>
+            <li class="nav-item mt-0">
+              <a class="nav-link" href="#!" role="button">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                  width="16px" height="16px"
+                  viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="feather feather-layers me-2">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                  <polyline points="2 17 12 22 22 17"></polyline>
+                  <polyline points="2 12 12 17 22 12"></polyline>
+                </svg>
+                Бизнес-план
+              </a>
+            </li>
+            <li class="nav-item mt-0">
+              <a class="nav-link" href="#!" role="button">
+                <i class="fa-solid fa-chart-column me-2"></i>
+                Финансы
+              </a>
+            </li>
+            <li class="nav-item mt-0">
+              <a class="nav-link" href="#!" role="button">
+                <i class="fa-solid fa-check-double me-2"></i>
+                Ключевые этапы
+              </a>
+            </li>
+            <li class="nav-item mt-0">
+              <a class="nav-link" href="#!" role="button">
+                <i class="fa-solid fa-bars-progress me-2"></i>
+                Мониторинг показателей
+              </a>
+            </li>
+          </ul>
+        </div>
       <ul class="navbar-nav navbar-nav-icons flex-row">
         <li class="nav-item">
           <div class="theme-control-toggle fa-ion-wait pe-2 theme-control-toggle-slim">
