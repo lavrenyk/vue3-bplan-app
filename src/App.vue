@@ -18,9 +18,6 @@ export default defineComponent({
     AppLayout
   },
   mounted() {
-    let popper = document.createElement('script');
-    popper.setAttribute('src', '/assets/vendors/popper/popper.min.js');
-    document.body.appendChild(popper);
 
     let bootstrap = document.createElement('script');
     bootstrap.setAttribute('src', '/assets/vendors/bootstrap/bootstrap.min.js');
@@ -66,9 +63,9 @@ export default defineComponent({
     leaflet.setAttribute('src', '/assets/vendors/leaflet/leaflet.js');
     document.body.appendChild(leaflet);
 
-    let leafletMarkercluster = document.createElement('script');
-    leafletMarkercluster.setAttribute('src', '/assets/vendors/leaflet.markercluster/leaflet.markercluster.js');
-    document.body.appendChild(leafletMarkercluster);
+    // let leafletMarkercluster = document.createElement('script');
+    // leafletMarkercluster.setAttribute('src', '/assets/vendors/leaflet.markercluster/leaflet.markercluster.js');
+    // document.body.appendChild(leafletMarkercluster);
 
     // let leafletTilelayerColorfilter = document.createElement('script');
     // leafletTilelayerColorfilter.setAttribute('src', '/assets/vendors/leaflet.tilelayer.colorfilter/leaflet-tilelayer-colorfilter.min.js');

@@ -150,7 +150,7 @@ export default defineComponent({
 
       if (loginResult) {
         this.loading = false;
-        this.$router.push('/');
+        this.$router.push('/plan');
       }
 
       this.loading = false;

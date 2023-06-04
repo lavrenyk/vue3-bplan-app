@@ -10,14 +10,14 @@
       <div class="collapse navbar-collapse navbar-top-collapse order-1 order-lg-0 justify-content-start" id="navbarTopCollapse">
           <ul class="navbar-nav navbar-nav-top" >
             <li class="nav-item mt-0">
-              <a class="nav-link" href="#!" role="button">
+              <router-link to="/pitch" class="nav-link ps-5" :exact-active-class="'nav-link active'" role="button">
                 <i class="fa-solid fa-person-chalkboard me-2"></i>
                 Презентация
-              </a>
+              </router-link>
             </li>
             <li class="nav-item mt-0">
-              <a class="nav-link" href="#!" role="button">
-                <svg xmlns="http://www.w3.org/2000/svg"
+              <router-link class="nav-link" to="/plan" :class="{'active': isActiveLink == 'plan'}">
+              <svg xmlns="http://www.w3.org/2000/svg"
                   width="16px" height="16px"
                   viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -27,25 +27,25 @@
                   <polyline points="2 12 12 17 22 12"></polyline>
                 </svg>
                 Бизнес-план
-              </a>
+              </router-link>
             </li>
             <li class="nav-item mt-0">
-              <a class="nav-link" href="#!" role="button">
+              <router-link class="nav-link" to="/finance" :class="{'active': isActiveLink == 'finance'}" role="button">
                 <i class="fa-solid fa-chart-column me-2"></i>
                 Финансы
-              </a>
+              </router-link>
             </li>
             <li class="nav-item mt-0">
-              <a class="nav-link" href="#!" role="button">
+              <router-link to="/milestones" class="nav-link" :class="{'active': isActiveLink == 'milestones'}" role="button">
                 <i class="fa-solid fa-check-double me-2"></i>
                 Ключевые этапы
-              </a>
+              </router-link>
             </li>
             <li class="nav-item mt-0">
-              <a class="nav-link" href="#!" role="button">
+              <router-link to="/dashboard" class="nav-link" :class="{'active': isActiveLink == 'dashboard'}" role="button">
                 <i class="fa-solid fa-bars-progress me-2"></i>
                 Мониторинг показателей
-              </a>
+              </router-link>
             </li>
           </ul>
         </div>
@@ -92,539 +92,57 @@
             </label>
           </div>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link" id="navbarDropdownNotification" href="#" role="button"
-            data-bs-toggle="dropdown" data-bs-auto-close="outside"
-            aria-haspopup="true" aria-expanded="false">
-            <svg xmlns="http://www.w3.org/2000/svg"
-              width="16px" height="16px" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-              class="feather feather-bell" style="height:12px;width:12px;">
-              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-            </svg>
-          </a>
-          <div class="dropdown-menu dropdown-menu-end notification-dropdown-menu py-0 shadow border border-300 navbar-dropdown-caret"
-            id="navbarDropdownNotification"
-            aria-labelledby="navbarDropdownNotification">
-            <div class="card position-relative border-0">
-              <div class="card-header p-2">
-                <div class="d-flex justify-content-between">
-                  <h5 class="text-black mb-0">
-                    Уведомления
-                  </h5>
-                  <button class="btn btn-link p-0 fs--1 fw-normal" type="button">
-                    Все как прочитанные
-                  </button>
-                </div>
-              </div>
-              <div class="card-body p-0">
-                <div class="scrollbar-overlay" style="height: 27rem;" data-simplebar="init">
-                  <div class="simplebar-wrapper" style="margin: 0px;">
-                    <div class="simplebar-height-auto-observer-wrapper">
-                      <div class="simplebar-height-auto-observer"></div>
-                    </div>
-                    <div class="simplebar-mask">
-                      <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
-                        <div class="simplebar-content-wrapper"
-                          tabindex="0" role="region" aria-label="scrollable content"
-                          style="height: auto; overflow: hidden;">
-                          <div class="simplebar-content" style="padding: 0px;">
-                            <div class="border-300">
-                              <div class="px-2 px-sm-3 py-3 border-300 notification-card position-relative read border-bottom">
-                                <div class="d-flex align-items-center justify-content-between position-relative">
-                                  <div class="d-flex">
-                                    <div class="avatar avatar-m status-online me-3">
-                                      <img class="rounded-circle" src="@/assets/img/team/40x40/30.webp" alt="">
-                                    </div>
-                                    <div class="flex-1 me-sm-3">
-                                      <h4 class="fs--1 text-black">
-                                        Jessie Samson
-                                      </h4>
-                                      <p class="fs--1 text-1000 mb-2 mb-sm-3 fw-normal">
-                                        <span class="me-1 fs--2">💬</span>
-                                        Mentioned you in a comment.
-                                        <span class="ms-2 text-400 fw-bold fs--2">10m</span>
-                                      </p>
-                                      <p class="text-800 fs--1 mb-0">
-                                        <svg class="svg-inline--fa fa-clock me-1"
-                                          aria-hidden="true" focusable="false"
-                                          data-prefix="fas" data-icon="clock"
-                                          role="img" xmlns="http://www.w3.org/2000/svg"
-                                          viewBox="0 0 512 512" data-fa-i2svg="">
-                                          <path fill="currentColor" d="M256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512zM232 256C232 264 236 271.5 242.7 275.1L338.7 339.1C349.7 347.3 364.6 344.3 371.1 333.3C379.3 322.3 376.3 307.4 365.3 300L280 243.2V120C280 106.7 269.3 96 255.1 96C242.7 96 231.1 106.7 231.1 120L232 256z"></path>
-                                        </svg><!-- <span class="me-1 fas fa-clock"></span> Font Awesome fontawesome.com -->
-                                        <span class="fw-bold">10:41 AM </span>
-                                        August 7,2021
-                                      </p>
-                                    </div>
-                                  </div>
-                                  <div class="font-sans-serif d-none d-sm-block"><button class="btn fs--2 btn-sm dropdown-toggle dropdown-caret-none transition-none notification-dropdown-toggle" type="button" data-stop-propagation="data-stop-propagation" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><svg class="svg-inline--fa fa-ellipsis fs--2 text-900" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="ellipsis" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M120 256C120 286.9 94.93 312 64 312C33.07 312 8 286.9 8 256C8 225.1 33.07 200 64 200C94.93 200 120 225.1 120 256zM280 256C280 286.9 254.9 312 224 312C193.1 312 168 286.9 168 256C168 225.1 193.1 200 224 200C254.9 200 280 225.1 280 256zM328 256C328 225.1 353.1 200 384 200C414.9 200 440 225.1 440 256C440 286.9 414.9 312 384 312C353.1 312 328 286.9 328 256z"></path></svg><!-- <span class="fas fa-ellipsis-h fs--2 text-900"></span> Font Awesome fontawesome.com --></button>
-                                    <div class="dropdown-menu dropdown-menu-end py-2"><a class="dropdown-item" href="#!">Mark as unread</a></div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="px-2 px-sm-3 py-3 border-300 notification-card position-relative unread border-bottom">
-                                <div class="d-flex align-items-center justify-content-between position-relative">
-                                  <div class="d-flex">
-                                    <div class="avatar avatar-m status-online me-3">
-                                      <div class="avatar-name rounded-circle"><span>J</span></div>
-                                    </div>
-                                    <div class="flex-1 me-sm-3">
-                                      <h4 class="fs--1 text-black">Jane Foster</h4>
-                                      <p class="fs--1 text-1000 mb-2 mb-sm-3 fw-normal"><span class="me-1 fs--2">📅</span>Created an event.<span class="ms-2 text-400 fw-bold fs--2">20m</span></p>
-                                      <p class="text-800 fs--1 mb-0"><svg class="svg-inline--fa fa-clock me-1" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="clock" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512zM232 256C232 264 236 271.5 242.7 275.1L338.7 339.1C349.7 347.3 364.6 344.3 371.1 333.3C379.3 322.3 376.3 307.4 365.3 300L280 243.2V120C280 106.7 269.3 96 255.1 96C242.7 96 231.1 106.7 231.1 120L232 256z"></path></svg><!-- <span class="me-1 fas fa-clock"></span> Font Awesome fontawesome.com --><span class="fw-bold">10:20 AM </span>August 7,2021</p>
-                                    </div>
-                                  </div>
-                                  <div class="font-sans-serif d-none d-sm-block"><button class="btn fs--2 btn-sm dropdown-toggle dropdown-caret-none transition-none notification-dropdown-toggle" type="button" data-stop-propagation="data-stop-propagation" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><svg class="svg-inline--fa fa-ellipsis fs--2 text-900" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="ellipsis" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M120 256C120 286.9 94.93 312 64 312C33.07 312 8 286.9 8 256C8 225.1 33.07 200 64 200C94.93 200 120 225.1 120 256zM280 256C280 286.9 254.9 312 224 312C193.1 312 168 286.9 168 256C168 225.1 193.1 200 224 200C254.9 200 280 225.1 280 256zM328 256C328 225.1 353.1 200 384 200C414.9 200 440 225.1 440 256C440 286.9 414.9 312 384 312C353.1 312 328 286.9 328 256z"></path></svg><!-- <span class="fas fa-ellipsis-h fs--2 text-900"></span> Font Awesome fontawesome.com --></button>
-                                    <div class="dropdown-menu dropdown-menu-end py-2"><a class="dropdown-item" href="#!">Mark as unread</a></div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="px-2 px-sm-3 py-3 border-300 notification-card position-relative unread border-bottom">
-                                <div class="d-flex align-items-center justify-content-between position-relative">
-                                  <div class="d-flex">
-                                    <div class="avatar avatar-m status-online me-3">
-                                      <img class="rounded-circle avatar-placeholder" src="@/assets/img/team/40x40/avatar.webp" alt="">
-                                    </div>
-                                    <div class="flex-1 me-sm-3">
-                                      <h4 class="fs--1 text-black">Jessie Samson</h4>
-                                      <p class="fs--1 text-1000 mb-2 mb-sm-3 fw-normal">
-                                        <span class="me-1 fs--2">👍</span>
-                                        Liked your comment.
-                                        <span class="ms-2 text-400 fw-bold fs--2">1h</span>
-                                      </p>
-                                      <p class="text-800 fs--1 mb-0">
-                                        <svg class="svg-inline--fa fa-clock me-1"
-                                          aria-hidden="true" focusable="false"
-                                          data-prefix="fas" data-icon="clock"
-                                          role="img" xmlns="http://www.w3.org/2000/svg"
-                                          viewBox="0 0 512 512" data-fa-i2svg="">
-                                          <path fill="currentColor" d="M256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512zM232 256C232 264 236 271.5 242.7 275.1L338.7 339.1C349.7 347.3 364.6 344.3 371.1 333.3C379.3 322.3 376.3 307.4 365.3 300L280 243.2V120C280 106.7 269.3 96 255.1 96C242.7 96 231.1 106.7 231.1 120L232 256z"></path>
-                                        </svg><!-- <span class="me-1 fas fa-clock"></span> Font Awesome fontawesome.com -->
-                                        <span class="fw-bold">9:30 AM </span>
-                                        August 7,2021
-                                      </p>
-                                    </div>
-                                  </div>
-                                  <div class="font-sans-serif d-none d-sm-block">
-                                    <button class="btn fs--2 btn-sm dropdown-toggle dropdown-caret-none transition-none notification-dropdown-toggle"
-                                      type="button" data-stop-propagation="data-stop-propagation" data-bs-toggle="dropdown" data-boundary="window"
-                                      aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
-                                      <svg class="svg-inline--fa fa-ellipsis fs--2 text-900" aria-hidden="true" focusable="false"
-                                        data-prefix="fas" data-icon="ellipsis" role="img" xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 448 512" data-fa-i2svg="">
-                                        <path fill="currentColor" d="M120 256C120 286.9 94.93 312 64 312C33.07 312 8 286.9 8 256C8 225.1 33.07 200 64 200C94.93 200 120 225.1 120 256zM280 256C280 286.9 254.9 312 224 312C193.1 312 168 286.9 168 256C168 225.1 193.1 200 224 200C254.9 200 280 225.1 280 256zM328 256C328 225.1 353.1 200 384 200C414.9 200 440 225.1 440 256C440 286.9 414.9 312 384 312C353.1 312 328 286.9 328 256z"></path>
-                                      </svg><!-- <span class="fas fa-ellipsis-h fs--2 text-900"></span> Font Awesome fontawesome.com -->
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-end py-2">
-                                      <a class="dropdown-item" href="#!">
-                                        Mark as unread
-                                      </a>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="border-300">
-                              <div class="px-2 px-sm-3 py-3 border-300 notification-card position-relative unread border-bottom">
-                                <div class="d-flex align-items-center justify-content-between position-relative">
-                                  <div class="d-flex">
-                                    <div class="avatar avatar-m status-online me-3">
-                                      <img class="rounded-circle" src="@/assets/img/team/40x40/57.webp" alt="">
-                                    </div>
-                                    <div class="flex-1 me-sm-3">
-                                      <h4 class="fs--1 text-black">Kiera Anderson</h4>
-                                      <p class="fs--1 text-1000 mb-2 mb-sm-3 fw-normal"><span class="me-1 fs--2">💬</span>Mentioned you in a comment.<span class="ms-2 text-400 fw-bold fs--2"></span></p>
-                                      <p class="text-800 fs--1 mb-0"><svg class="svg-inline--fa fa-clock me-1" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="clock" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512zM232 256C232 264 236 271.5 242.7 275.1L338.7 339.1C349.7 347.3 364.6 344.3 371.1 333.3C379.3 322.3 376.3 307.4 365.3 300L280 243.2V120C280 106.7 269.3 96 255.1 96C242.7 96 231.1 106.7 231.1 120L232 256z"></path></svg><!-- <span class="me-1 fas fa-clock"></span> Font Awesome fontawesome.com --><span class="fw-bold">9:11 AM </span>August 7,2021</p>
-                                    </div>
-                                  </div>
-                                  <div class="font-sans-serif d-none d-sm-block">
-                                    <button class="btn fs--2 btn-sm dropdown-toggle dropdown-caret-none transition-none notification-dropdown-toggle"
-                                      type="button" data-stop-propagation="data-stop-propagation" data-bs-toggle="dropdown" data-boundary="window"
-                                      aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
-                                      <svg class="svg-inline--fa fa-ellipsis fs--2 text-900"
-                                        aria-hidden="true" focusable="false"
-                                        data-prefix="fas" data-icon="ellipsis" role="img" xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 448 512" data-fa-i2svg="">
-                                        <path fill="currentColor" d="M120 256C120 286.9 94.93 312 64 312C33.07 312 8 286.9 8 256C8 225.1 33.07 200 64 200C94.93 200 120 225.1 120 256zM280 256C280 286.9 254.9 312 224 312C193.1 312 168 286.9 168 256C168 225.1 193.1 200 224 200C254.9 200 280 225.1 280 256zM328 256C328 225.1 353.1 200 384 200C414.9 200 440 225.1 440 256C440 286.9 414.9 312 384 312C353.1 312 328 286.9 328 256z"></path>
-                                      </svg><!-- <span class="fas fa-ellipsis-h fs--2 text-900"></span> Font Awesome fontawesome.com -->
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-end py-2">
-                                      <a class="dropdown-item" href="#!">
-                                        Mark as unread
-                                      </a>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="px-2 px-sm-3 py-3 border-300 notification-card position-relative unread border-bottom">
-                                <div class="d-flex align-items-center justify-content-between position-relative">
-                                  <div class="d-flex">
-                                    <div class="avatar avatar-m status-online me-3"><img class="rounded-circle" src="@/assets/img/team/40x40/59.webp" alt=""></div>
-                                    <div class="flex-1 me-sm-3">
-                                      <h4 class="fs--1 text-black">Herman Carter</h4>
-                                      <p class="fs--1 text-1000 mb-2 mb-sm-3 fw-normal"><span class="me-1 fs--2">👤</span>Tagged you in a comment.<span class="ms-2 text-400 fw-bold fs--2"></span></p>
-                                      <p class="text-800 fs--1 mb-0"><svg class="svg-inline--fa fa-clock me-1" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="clock" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512zM232 256C232 264 236 271.5 242.7 275.1L338.7 339.1C349.7 347.3 364.6 344.3 371.1 333.3C379.3 322.3 376.3 307.4 365.3 300L280 243.2V120C280 106.7 269.3 96 255.1 96C242.7 96 231.1 106.7 231.1 120L232 256z"></path></svg><!-- <span class="me-1 fas fa-clock"></span> Font Awesome fontawesome.com --><span class="fw-bold">10:58 PM </span>August 7,2021</p>
-                                    </div>
-                                  </div>
-                                  <div class="font-sans-serif d-none d-sm-block"><button class="btn fs--2 btn-sm dropdown-toggle dropdown-caret-none transition-none notification-dropdown-toggle" type="button" data-stop-propagation="data-stop-propagation" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><svg class="svg-inline--fa fa-ellipsis fs--2 text-900" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="ellipsis" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M120 256C120 286.9 94.93 312 64 312C33.07 312 8 286.9 8 256C8 225.1 33.07 200 64 200C94.93 200 120 225.1 120 256zM280 256C280 286.9 254.9 312 224 312C193.1 312 168 286.9 168 256C168 225.1 193.1 200 224 200C254.9 200 280 225.1 280 256zM328 256C328 225.1 353.1 200 384 200C414.9 200 440 225.1 440 256C440 286.9 414.9 312 384 312C353.1 312 328 286.9 328 256z"></path></svg><!-- <span class="fas fa-ellipsis-h fs--2 text-900"></span> Font Awesome fontawesome.com --></button>
-                                    <div class="dropdown-menu dropdown-menu-end py-2"><a class="dropdown-item" href="#!">Mark as unread</a></div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="px-2 px-sm-3 py-3 border-300 notification-card position-relative read ">
-                                <div class="d-flex align-items-center justify-content-between position-relative">
-                                  <div class="d-flex">
-                                    <div class="avatar avatar-m status-online me-3">
-                                      <img class="rounded-circle" src="@/assets/img/team/40x40/58.webp" alt="">
-                                    </div>
-                                    <div class="flex-1 me-sm-3">
-                                      <h4 class="fs--1 text-black">Benjamin Button</h4>
-                                      <p class="fs--1 text-1000 mb-2 mb-sm-3 fw-normal"><span class="me-1 fs--2">👍</span>Liked your comment.<span class="ms-2 text-400 fw-bold fs--2"></span></p>
-                                      <p class="text-800 fs--1 mb-0"><svg class="svg-inline--fa fa-clock me-1" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="clock" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512zM232 256C232 264 236 271.5 242.7 275.1L338.7 339.1C349.7 347.3 364.6 344.3 371.1 333.3C379.3 322.3 376.3 307.4 365.3 300L280 243.2V120C280 106.7 269.3 96 255.1 96C242.7 96 231.1 106.7 231.1 120L232 256z"></path></svg><!-- <span class="me-1 fas fa-clock"></span> Font Awesome fontawesome.com --><span class="fw-bold">10:18 AM </span>August 7,2021</p>
-                                    </div>
-                                  </div>
-                                  <div class="font-sans-serif d-none d-sm-block">
-                                    <button class="btn fs--2 btn-sm dropdown-toggle dropdown-caret-none transition-none notification-dropdown-toggle"
-                                      type="button" data-stop-propagation="data-stop-propagation" data-bs-toggle="dropdown" data-boundary="window"
-                                      aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
-                                      <svg class="svg-inline--fa fa-ellipsis fs--2 text-900"
-                                        aria-hidden="true" focusable="false" data-prefix="fas" data-icon="ellipsis"
-                                        role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
-                                        <path fill="currentColor" d="M120 256C120 286.9 94.93 312 64 312C33.07 312 8 286.9 8 256C8 225.1 33.07 200 64 200C94.93 200 120 225.1 120 256zM280 256C280 286.9 254.9 312 224 312C193.1 312 168 286.9 168 256C168 225.1 193.1 200 224 200C254.9 200 280 225.1 280 256zM328 256C328 225.1 353.1 200 384 200C414.9 200 440 225.1 440 256C440 286.9 414.9 312 384 312C353.1 312 328 286.9 328 256z"></path>
-                                      </svg><!-- <span class="fas fa-ellipsis-h fs--2 text-900"></span> Font Awesome fontawesome.com -->
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-end py-2">
-                                      <a class="dropdown-item" href="#!">
-                                        Mark as unread
-                                      </a>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="simplebar-placeholder" style="width: 0px; height: 0px;"></div>
-                  </div>
-                  <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;">
-                    <div class="simplebar-scrollbar" style="width: 0px; display: none;"></div>
-                  </div>
-                  <div class="simplebar-track simplebar-vertical" style="visibility: hidden;">
-                    <div class="simplebar-scrollbar" style="height: 0px; display: none;"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="card-footer p-0 border-top border-0">
-                <div class="my-2 text-center fw-bold fs--2 text-600">
-                  <a class="fw-bolder" href="@/pages/notifications.html">
-                    Notification history
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link" id="navbarDropdownNindeDots" href="#"
-            role="button" data-bs-toggle="dropdown" aria-haspopup="true"
-            data-bs-auto-close="outside" aria-expanded="false">
-            <svg width="10" height="10" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="2" cy="2" r="2" fill="currentColor"></circle>
-              <circle cx="2" cy="8" r="2" fill="currentColor"></circle>
-              <circle cx="2" cy="14" r="2" fill="currentColor"></circle>
-              <circle cx="8" cy="8" r="2" fill="currentColor"></circle>
-              <circle cx="8" cy="14" r="2" fill="currentColor"></circle>
-              <circle cx="14" cy="8" r="2" fill="currentColor"></circle>
-              <circle cx="14" cy="14" r="2" fill="currentColor"></circle>
-              <circle cx="8" cy="2" r="2" fill="currentColor"></circle>
-              <circle cx="14" cy="2" r="2" fill="currentColor"></circle>
-            </svg>
-          </a>
-          <div class="dropdown-menu dropdown-menu-end navbar-dropdown-caret py-0 dropdown-nide-dots shadow border border-300"
-            aria-labelledby="navbarDropdownNindeDots">
-            <div class="card bg-white position-relative border-0">
-              <div class="card-body pt-3 px-3 pb-0 overflow-auto scrollbar" style="height: 20rem;">
-                <div class="row text-center align-items-center gx-0 gy-0">
-                  <div class="col-4">
-                    <a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!">
-                      <img src="@/assets/img/nav-icons/behance.webp" alt="" width="30">
-                      <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">
-                        Behance
-                      </p>
-                    </a>
-                  </div>
-                  <div class="col-4">
-                    <a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!">
-                      <img src="@/assets/img/nav-icons/google-cloud.webp" alt="" width="30">
-                      <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">
-                        Cloud
-                      </p>
-                    </a>
-                  </div>
-                  <div class="col-4">
-                    <a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!">
-                      <img src="@/assets/img/nav-icons/slack.webp" alt="" width="30">
-                      <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">
-                        Slack
-                      </p>
-                    </a>
-                  </div>
-                  <div class="col-4">
-                    <a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!">
-                      <img src="@/assets/img/nav-icons/gitlab.webp" alt="" width="30">
-                      <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">
-                        Gitlab
-                      </p>
-                    </a>
-                  </div>
-                  <div class="col-4">
-                    <a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!">
-                      <img src="@/assets/img/nav-icons/bitbucket.webp" alt="" width="30">
-                      <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">
-                        BitBucket
-                      </p>
-                    </a>
-                  </div>
-                  <div class="col-4">
-                    <a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!">
-                      <img src="@/assets/img/nav-icons/google-drive.webp" alt="" width="30">
-                      <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">
-                        Drive
-                      </p>
-                    </a>
-                  </div>
-                  <div class="col-4">
-                    <a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!">
-                      <img src="@/assets/img/nav-icons/trello.webp" alt="" width="30">
-                      <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">
-                        Trello
-                      </p>
-                    </a>
-                  </div>
-                  <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!">
-                    <img src="@/assets/img/nav-icons/figma.webp" alt="" width="20">
-                      <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">
-                        Figma
-                      </p>
-                    </a>
-                  </div>
-                  <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!">
-                    <img src="@/assets/img/nav-icons/twitter.webp" alt="" width="30">
-                      <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">
-                        Twitter
-                      </p>
-                    </a>
-                  </div>
-                  <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!">
-                    <img src="@/assets/img/nav-icons/pinterest.webp" alt="" width="30">
-                      <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">
-                        Pinterest
-                      </p>
-                    </a>
-                  </div>
-                  <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!">
-                    <img src="@/assets/img/nav-icons/ln.webp" alt="" width="30">
-                      <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">
-                        Linkedin
-                      </p>
-                    </a>
-                  </div>
-                  <div class="col-4">
-                    <a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!">
-                      <img src="@/assets/img/nav-icons/google-maps.webp" alt="" width="30">
-                      <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">
-                        Maps
-                      </p>
-                    </a>
-                  </div>
-                  <div class="col-4">
-                    <a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!">
-                      <img src="@/assets/img/nav-icons/google-photos.webp" alt="" width="30">
-                      <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">
-                        Photos
-                      </p>
-                    </a>
-                  </div>
-                  <div class="col-4"><a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none mb-3" href="#!">
-                    <img src="@/assets/img/nav-icons/spotify.webp" alt="" width="30">
-                      <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">
-                        Spotify
-                      </p>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link lh-1 pe-0 white-space-nowrap" id="navbarDropdownUser" href="#!"
-            role="button" data-bs-toggle="dropdown" aria-haspopup="true"
-            data-bs-auto-close="outside" aria-expanded="false">
-            Olivia
-            <svg class="svg-inline--fa fa-chevron-down fs--2"
-              aria-hidden="true" focusable="false"
-              data-prefix="fas" data-icon="chevron-down"
-              role="img" xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 448 512" data-fa-i2svg="">
-              <path fill="currentColor" d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"></path>
-            </svg><!-- <span class="fa-solid fa-chevron-down fs--2"></span> Font Awesome fontawesome.com -->
-          </a>
-          <div class="dropdown-menu dropdown-menu-end navbar-dropdown-caret py-0 dropdown-profile shadow border border-300"
-            aria-labelledby="navbarDropdownUser">
-            <div class="card position-relative border-0">
-              <div class="card-body p-0">
-                <div class="text-center pt-4 pb-3">
-                  <div class="avatar avatar-xl ">
-                    <img class="rounded-circle " src="@/assets/img/team/72x72/57.webp" alt="">
-                  </div>
-                  <h6 class="mt-2 text-black">
-                    Jerry Seinfield
-                  </h6>
-                </div>
-                <div class="mb-3 mx-3">
-                  <input class="form-control form-control-sm"
-                    id="statusUpdateInput"
-                    type="text"
-                    placeholder="Update your status">
-                </div>
-              </div>
-              <div class="overflow-auto scrollbar" style="height: 10rem;">
-                <ul class="nav d-flex flex-column mb-2 pb-1">
-                  <li class="nav-item">
-                    <a class="nav-link px-3" href="#!">
-                      <svg xmlns="http://www.w3.org/2000/svg"
-                        width="16px" height="16px"
-                        viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="feather feather-user me-2 text-900">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="12" cy="7" r="4"></circle>
-                      </svg>
-                      <span>Profile</span>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link px-3" href="#!">
-                      <svg xmlns="http://www.w3.org/2000/svg"
-                        width="16px" height="16px"
-                        viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="feather feather-pie-chart me-2 text-900">
-                        <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
-                        <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
-                      </svg>
-                      Dashboard
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link px-3" href="#!">
-                      <svg xmlns="http://www.w3.org/2000/svg"
-                        width="16px" height="16px"
-                        viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="feather feather-settings me-2 text-900">
-                        <circle cx="12" cy="12" r="3"></circle>
-                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                      </svg>
-                      Settings &amp; Privacy
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link px-3" href="#!">
-                      <svg xmlns="http://www.w3.org/2000/svg"
-                        width="16px" height="16px"
-                        viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="feather feather-help-circle me-2 text-900">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
-                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
-                      </svg>
-                      Help Center
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link px-3" href="#!">
-                      <svg xmlns="http://www.w3.org/2000/svg"
-                        width="16px" height="16px"
-                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="feather feather-globe me-2 text-900">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <line x1="2" y1="12" x2="22" y2="12"></line>
-                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-                      </svg>
-                      Language
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div class="card-footer p-0 border-top">
-                <ul class="nav d-flex flex-column my-3">
-                  <li class="nav-item">
-                    <a class="nav-link px-3" href="#!">
-                      <svg xmlns="http://www.w3.org/2000/svg"
-                        width="16px" height="16px"
-                        viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="feather feather-user-plus me-2 text-900">
-                        <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="8.5" cy="7" r="4"></circle>
-                        <line x1="20" y1="8" x2="20" y2="14"></line>
-                        <line x1="23" y1="11" x2="17" y2="11"></line>
-                      </svg>
-                      Add another account
-                    </a>
-                  </li>
-                </ul>
-                <hr>
-                <div class="px-3">
-                  <a class="btn btn-phoenix-secondary d-flex flex-center w-100" href="#!">
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                      width="16px" height="16px"
-                      viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                      class="feather feather-log-out me-2">
-                      <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-                      <polyline points="16 17 21 12 16 7"></polyline>
-                      <line x1="21" y1="12" x2="9" y2="12"></line>
-                    </svg>
-                    Sign out
-                  </a>
-                </div>
-                <div class="my-2 text-center fw-bold fs--2 text-600">
-                  <a class="text-600 me-1" href="#!">
-                    Privacy policy
-                  </a>
-                  •
-                  <a class="text-600 mx-1" href="#!">
-                    Terms
-                  </a>
-                  •
-                  <a class="text-600 ms-1" href="#!">
-                    Cookies
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </li>
+        <the-app-top-navbar-user-info-menu />
       </ul>
     </div>
+    <nav class="ecommerce-navbar fixed-top navbar-expand navbar-light bg-white justify-content-between"
+      style="margin-top: 2.48rem; margin-left: 15.9rem;">
+      <component :is="showAdditionalMenu" />
+    </nav>
   </nav>
 </template>
 
 <script>
+import TheAppTopNavbarPlanMenu from './TheAppTopNavbarPlanMenu.vue';
+import TheAppTopNavbarFinanceMenu from './TheAppTopNavbarFinanceMenu.vue';
+import TheAppTopNavbarUserInfoMenu from './TheAppTopNavbarUserInfoMenu.vue';
+
 
 export default {
+  components: {
+    TheAppTopNavbarPlanMenu,
+    TheAppTopNavbarFinanceMenu,
+    TheAppTopNavbarUserInfoMenu,
+  },
 
+  computed: {
+    isActiveLink() {
+      if (this.$route.fullPath.includes('pitch')) {
+        return 'pitch'
+      }
+      if (this.$route.fullPath.includes('plan')) {
+        return 'plan'
+      }
+      if (this.$route.fullPath.includes('finance')) {
+        return 'finance'
+      }
+      if (this.$route.fullPath.includes('milestones')) {
+        return 'milestones'
+      }
+      if (this.$route.fullPath.includes('dashboard')) {
+        return 'dashboard'
+      }
+      return ''
+    },
+    showAdditionalMenu() {
+      return 'the-app-top-navbar-' + this.isActiveLink + '-menu';
+    }
+  }
 }
 </script>
 
-<style>
-
+<style lang="css" scoped>
+.active {
+    color: #42b983;
+}
 </style>

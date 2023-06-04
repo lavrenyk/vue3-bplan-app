@@ -3,32 +3,11 @@ import {
   createUserWithEmailAndPassword
 } from "firebase/auth";
 // import router  from "@/router";
-import { auth, db, doc, setDoc } from "@/firebase";
+import { auth, db, doc, getDoc, setDoc } from "@/firebase";
 
 export default {
   actions: {
-    async login({commit}, loginData ) {
-      try {
-        await signInWithEmailAndPassword(auth, loginData.email, loginData.password);
-      } catch (error) {
-        switch (error.code) {
-          case 'auth/user-not-found':
-            alert('User not found!')
-            break
-          case 'auth/wrong-password':
-            alert('Wrong password!')
-            break
-          default:
-            alert(error.message)
-        }
-        // If error exit the login attempt
-        return
-      }
-
-      commit("setCurrentUser", auth.currentUser);
-      return true;
-    },
-
+    // New user registration in the system
     async registration ({ commit }, registrationData) {
       try {
         await createUserWithEmailAndPassword(auth, registrationData.email, registrationData.password);
@@ -87,6 +66,50 @@ export default {
       commit('setCurrentUser', auth.currentUser)
       return true;
     },
+
+    // Signing In User into the system
+    async login({ commit, dispatch }, loginData ) {
+      try {
+        await signInWithEmailAndPassword(auth, loginData.email, loginData.password);
+        await dispatch('fetchUserInfo');
+      } catch (error) {
+        switch (error.code) {
+          case 'auth/user-not-found':
+            alert('User not found!')
+            break
+          case 'auth/wrong-password':
+            alert('Wrong password!')
+            break
+          default:
+            alert(error.message)
+        }
+        // If error exit the login attempt
+        return
+      }
+
+      commit("setCurrentUser", auth.currentUser);
+      return true;
+    },
+
+    // Fetch exist user data
+    async fetchUserInfo({ commit }) {
+      try {
+        let userId = auth.currentUser.uid;
+        console.log(userId);
+        const userDocRef = doc(db, '/users', userId);
+        const userDocData = await getDoc(userDocRef);
+        const userInfo = userDocData.data().userInfo;
+        commit('setUserInfo', userInfo);
+      } catch (error) {
+        console.log("Error to load userInfo",  error);
+      }
+    },
+
+    // User Sign Out
+    async signOut({ commit }) {
+      await auth.signOut();
+      commit('clearUserInfo')
+    }
   },
 
 }

@@ -1,8 +1,12 @@
 <template>
+  
   <div class="nav-slim">
+    
     <main class="main" id="top">
+      
       <div class="pb-5">
         <div class="row g-4">
+          
 
           <div class="d-flex flex-center content-min-h">
             <div class="text-center py-9">
@@ -28,7 +32,10 @@
 <script>
 
 export default {
+  mounted() {
+    console.log(this.$route);
 
+  }
 }
 </script>
 

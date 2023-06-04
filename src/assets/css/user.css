@@ -1,0 +1,11 @@
+.border-right {
+  border-right: 1px solid rgba(163,203,255,.16)!important;
+}
+
+.form-floating>.form-control:not(:placeholder-shown)~label::after {
+  background-color: transparent !important;
+}
+
+.form-floating>.form-control:focus~label::after {
+  background-color: transparent !important;
+}
