@@ -152,24 +152,24 @@
     <div class="d-flex flex-center content-min-h">
       <div class="text-center py-9">
         <div v-if="!activeBPlan" 
-          class="card">
+          class="card" style="max-width: 70rem;">
           <div class="card-body overflow-hidden p-lg-4">
             <div class="row align-items-center justify-content-between">
               <div class="col-lg-6">
                 <img class="img-fluid" src="@/assets/img/spot-illustrations/22_2.png" alt="">
               </div>
-              <div class="col-lg-6 pl-lg-4 text-center text-lg-left">
+              <div class="col-lg-6 ps-lg-4 text-center text-lg-left">
                 <div  v-if="creating"
-                  class="row p-0">
+                  class="row p-0 px-4">
 
-                  <div class="col-12 px-0">
+                  <div class="col-12 px-0 mb-4">
                     <b-form-group
                       label="Название проекта:"
-                      labele-for="directCostTitle"
+                      labele-for="bplanTitle"
                       :invalid-feedback="invalidFeedback"
                       :state="titleState">
                       <b-form-input
-                        id="direcCostTitle"
+                        id="bplanTitle"
                         v-model="title"
                         :state="titleState"
                         :disabled="loading">
@@ -177,7 +177,7 @@
                     </b-form-group>
                   </div>
                   <b-form-group
-                    class="col-6 p-0"
+                    class="col-6 p-0 text-start mb-4"
                     label="Срок планирования:">
                     <b-form-radio-group 
                       v-model="selectedBPlanPeriod"
@@ -203,7 +203,7 @@
                     </custom-dropdown>
                   </b-form-group>
                   <b-form-group
-                    class="col-12 p-0"
+                    class="col-12 p-0 text-start mb-5"
                     label="Режим налогооблажения:">
                     <b-form-radio-group
                       v-model="taxSelected"
@@ -224,7 +224,7 @@
                     В процессе...
                   </b-button>
                   <div v-if="!loading"
-                    class="btn btn-falcon-primary mt-2"
+                    class="btn btn-phoenix-primary mt-2"
                     @click='createBPlan'>
                     Создать
                   </div>
@@ -254,7 +254,7 @@ export default {
   data: () => ({
     loading: false,
     deleting: false,
-    creating: false,
+    creating: true,
     editing: false,
     title: '',
     bplanStartDefault: 0,
@@ -412,6 +412,9 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+  .form-label {
+    text-transform: none;
+    text-align: start;
+  }
 </style>

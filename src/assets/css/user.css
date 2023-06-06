@@ -9,3 +9,13 @@
 .form-floating>.form-control:focus~label::after {
   background-color: transparent !important;
 }
+
+.form-label {
+  text-transform: none;
+  text-align: start;
+  padding-left: 0;
+}
+
+.invalid-feedback {
+  text-align: start;
+}
