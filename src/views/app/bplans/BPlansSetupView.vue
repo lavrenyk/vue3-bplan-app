@@ -139,7 +139,7 @@
               </div>
               <div v-if="!loading"
                 class="btn btn-falcon-danger mt-2 ml-2"
-                @click='setDeafault'>
+                @click='setDefault'>
                 Отменить
               </div>
             </div>
@@ -288,7 +288,11 @@ export default {
       return this.$store.getters.getActiveBPlan;
     },
 
-    bplanStart: {
+    /* Устанавливаем начальную дату проекта. Пока дата ставится от текущего года, но нужно сделать 
+     * так: чтобы пользователь смог задать год начала проекта, в том числе и задним числом
+     */
+    //TODO: Расширить возможность выбора года начала проекта!
+    bplanStart: { 
       get: function() {
         var options = [];
         const currentYear = new Date().getFullYear();
@@ -340,7 +344,9 @@ export default {
         taxRate: this.taxSelected 
       };
 
-      await this.$store.dispatch('createBPlan', payload);  
+      console.log(payload);
+
+      // await this.$store.dispatch('createBPlan', payload);  
       this.loading = false;
       this.creating = false;
       this.title = '';
@@ -399,7 +405,7 @@ export default {
       })
     },
 
-    setDeafault() {
+    setDefault() {
       this.title = '';
       this.selectedBPlanStart = null;
       this.bplanStartDefault = 0;

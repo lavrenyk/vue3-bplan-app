@@ -29,9 +29,11 @@ export default createStore({
     clearUserInfo(state) {
       state.userInfo = null;
       localStorage.setItem('userInfo', JSON.stringify(null));
-    }
+    },
   },
   actions: {
+    
+
   },
   modules: {
     auth,
