@@ -189,7 +189,7 @@ export default defineComponent({
 
       if (registrationResult) {
         this.loading = false;
-        this.$router.push('/');
+        this.$router.push('/plan');
       }
 
       this.loading = false;

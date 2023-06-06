@@ -177,11 +177,11 @@
                   <div>
                   <div class="mt-5 text-start">
                     <button class="btn btn-phoenix-secondary me-2 mt-1">
-                    Отменить
-                  </button>
-                  <button class="btn btn-phoenix-success mt-1">
-                    Сохранить
-                  </button>
+                      Отменить
+                    </button>
+                    <button class="btn btn-phoenix-success mt-1">
+                      Сохранить
+                    </button>
                   </div>
                 </div>
                 </div>

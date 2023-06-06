@@ -8,6 +8,8 @@ const routes = [
     meta: {layout: 'main'},
     component: () => import('@/views/LandingView.vue')
   },
+
+  // Auth section
   {
     path: '/login',
     name: 'sign-in',
@@ -20,6 +22,12 @@ const routes = [
     meta: {layout: 'empty'},
     component: () => import('@/views/auth/SignUpView.vue')
   },
+  {
+    path: '/verification',
+    name: 'email-verification',
+    meta: {layout: 'empty', auth: true},
+    component: () => import('@/views/auth/SignUpEmailVerificationView.vue')
+  },
 
   // Profile section
   {
@@ -27,6 +35,14 @@ const routes = [
     name: 'profile-page',
     meta: {layout: 'app', auth: true},
     component: () => import('@/views/app/profile/ProfileView.vue'),
+  },
+
+  // BPlan setup section
+  {
+    path: '/bplans-setup',
+    name: 'bplans-setup-page',
+    meta: {layout: 'app', auth: true},
+    component: () => import('@/views/app/bplans/BPlansSetupView.vue'),
   },
 
   // Pitch section

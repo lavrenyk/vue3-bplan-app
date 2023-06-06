@@ -1,6 +1,7 @@
 import {
   signInWithEmailAndPassword,
-  createUserWithEmailAndPassword
+  createUserWithEmailAndPassword,
+  sendEmailVerification
 } from "firebase/auth";
 // import router  from "@/router";
 import { auth, db, doc, getDoc, setDoc } from "@/firebase";
@@ -8,7 +9,7 @@ import { auth, db, doc, getDoc, setDoc } from "@/firebase";
 export default {
   actions: {
     // New user registration in the system
-    async registration ({ commit }, registrationData) {
+    async registration ({ commit, dispatch }, registrationData) {
       try {
         await createUserWithEmailAndPassword(auth, registrationData.email, registrationData.password);
         // await updateProfile(auth.currentUser, {
@@ -36,7 +37,8 @@ export default {
           },
         });
 
-        // await dispatch('getUserInfo')
+        await dispatch('fetchUserInfo');
+        await dispatch('sendEmailVerification');
 
         } catch (error) {
           switch (error.code) {
@@ -107,8 +109,19 @@ export default {
 
     // User Sign Out
     async signOut({ commit }) {
+      console.log("Account exit!");
       await auth.signOut();
       commit('clearUserInfo')
+    },
+
+    // Email verification 
+    async sendEmailVerification() {
+      try {
+        console.log("Send verification email!");
+        await sendEmailVerification(auth.currentUser);
+      } catch (error) {
+        console.log("Error to send verification email!", error);
+      }
     }
   },
 
