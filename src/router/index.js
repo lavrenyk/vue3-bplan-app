@@ -39,7 +39,7 @@ const routes = [
 
   // BPlan setup section
   {
-    path: '/bplans-setup',
+    path: '/projects',
     name: 'bplans-setup-page',
     meta: {layout: 'app', auth: true},
     component: () => import('@/views/app/bplans/BPlansSetupView.vue'),
