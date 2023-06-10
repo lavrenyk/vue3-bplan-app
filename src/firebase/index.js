@@ -1,7 +1,10 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
-import { getFirestore, doc, getDoc, setDoc, addDoc, collection, query, getDocs, where } from "firebase/firestore";
+import { getFirestore,
+  doc, getDoc, setDoc, addDoc, getDocs, updateDoc, deleteDoc,
+  collection, query, where  
+} from "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBUaUMNDvzxA6rD9qwCXvxBBJtyxQpniqg",
@@ -21,15 +24,7 @@ const analytics = getAnalytics(app);
 const db = getFirestore();
 
 export {
-  analytics,
-  auth,
-  db,
-  doc,
-  getDoc,
-  setDoc,
-  addDoc,
-  collection,
-  query,
-  getDocs,
-  where
+  analytics, auth, db,
+  doc, addDoc, getDocs, getDoc, setDoc, updateDoc, deleteDoc,
+  collection, query, where
 }

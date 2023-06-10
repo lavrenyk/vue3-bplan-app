@@ -40,15 +40,17 @@
                     </div>
                     <div class="ms-auto">
                       <router-link to="/plan"
-                        class="btn btn-outline-success btn-sm ms-2 ">
+                        class="btn btn-phoenix-success btn-sm ms-2 ">
                         Выбрать
                       </router-link>
-                      <div class="btn btn-outline-primary btn-sm ms-2" 
+                      <div class="btn btn-phoenix-primary btn-sm ms-2" 
                         @click="setBPlanToEdit(activeBPlan)">
                         Настроить
                       </div>
-                      <div class="btn btn-outline-danger btn-sm ms-2 "
-                        @click="deleteBPlan(activeBPlan)">
+                      <div class="btn btn-phoenix-danger btn-sm ms-2"
+                        type="button"
+                        data-bs-toggle="modal"
+                        data-bs-target="#deleteProjectModal">
                         <i class="far fa-trash-alt"></i>
                       </div>
                     </div>
@@ -101,7 +103,7 @@
                 </custom-dropdown>
               </b-form-group>
               <b-form-group
-                class="col-4 p-0"
+                class="col-3 p-0 mt-3 text-start py-1"
                 label="Срок планирования:">
                 <b-form-radio-group
                   v-model="selectedBPlanPeriod"
@@ -115,7 +117,7 @@
                 </b-form-radio-group>
               </b-form-group>
               <b-form-group
-                class="col-8 p-0"
+                class="col-9 p-0 py-1 mt-3 text-start"
                 label="Режим налогооблажения:">
                 <b-form-radio-group
                   v-model="taxSelected"
@@ -127,21 +129,23 @@
                 </b-form-radio-group>
               </b-form-group>
 
-              <div v-if="loading"
-                class="btn btn-falcon-success"
-                disabled>
-                <b-spinner small type="grow"></b-spinner>
-                В процессе...
-              </div>
-              <div v-if="!loading"
-                class="btn btn-falcon-primary mt-2"
-                @click='updateBPlan(activeBPlan)'>
-                Сохранить изменения
-              </div>
-              <div v-if="!loading"
-                class="btn btn-falcon-danger mt-2 ml-2"
-                @click='setDefault'>
-                Отменить
+              <div class="d-flex align-items-center justify-content-start mt-4 ps-0">
+                <div v-if="loading"
+                  class="btn btn-phoenix-success"
+                  disabled>
+                  <b-spinner small type="grow"></b-spinner>
+                  В процессе...
+                </div>
+                <div v-if="!loading"
+                  class="btn btn-phoenix-primary mt-2"
+                  @click='updateBPlan(activeBPlan)'>
+                  Сохранить изменения
+                </div>
+                <div v-if="!loading"
+                  class="btn btn-phoenix-danger mt-2 ms-2"
+                  @click='setDefault'>
+                  Отменить
+                </div>
               </div>
             </div>
           </div>
@@ -217,15 +221,12 @@
                     </b-form-radio-group>
                   </b-form-group>
                   <div class="row">
-                    <div class="col-12">
-                      <b-button v-if="loading"
-                        class="float-right"
-                        variant="outline-success"
-                        size="sm"
-                        disabled>
-                        <b-spinner small type="grow"></b-spinner>
-                        В процессе...
-                      </b-button>
+                    <div class="d-grid gap-2">
+                      <button v-if="loading"
+                        class="d-flex align-items-center justify-content-center btn btn-outline-success btn-sm me-2" type="button" disabled="true">
+                        <span class="spinner-grow spinner-grow-sm me-2" role="status" aria-hidden="true"></span>
+                        Идет создание проекта...
+                      </button>
                     </div>
                     <div class="col-8">
                       <div v-if="!loading"
@@ -258,6 +259,43 @@
       </div>
     </div>
   </div>
+
+  <div v-if="activeBPlan"
+    class="modal fade" id="deleteProjectModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            ВНИМАНИЕ!
+          </h5>
+          <button class="btn p-1" type="button" data-bs-dismiss="modal" aria-label="Close">
+            <span class="fas fa-times fs--1"></span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p class="text-700 lh-lg mb-0">
+            Вы действительно хотите удалить проект: <br> 
+            <span class="fw-bold">"{{ activeBPlan.title }}"</span>?
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button v-if="deleting"
+            class="d-flex align-items-center btn btn-danger btn-sm me-2" type="button" disabled="" data-bs-dismiss="modal">
+            <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+            Удаление проекта...
+          </button>
+          <button v-if="!deleting" @click.prevent="deleteBPlan(activeBPlan)"
+            class="btn btn-phoenix-danger" type="button">
+            Да!
+          </button>
+          <button v-if="!deleting"
+            class="btn btn-phoenix-primary" type="button" data-bs-dismiss="modal">
+            Отменить
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -265,6 +303,7 @@ import CustomDropdown from '@/views/app/components/widgets/CustomDropdown.vue';
 
 export default {
   data: () => ({
+    modal: false,
     loading: false,
     deleting: false,
     creating: false,
@@ -305,6 +344,7 @@ export default {
     // Устанавливаем начальную дату проекта.
     bplanStart: {
       get: function() {
+        console.log("start making project years");
         var options = [];
         const currentYear = new Date().getFullYear() - 1;
         for (let i = 0; i < 5; i ++) {
@@ -314,6 +354,7 @@ export default {
       },
       set: function(value) {
         if (value) {
+          console.log("Set BPlan start", value);
           this.selectedBPlanStart = value;
         }
       }
@@ -363,9 +404,10 @@ export default {
     },
 
     setBPlanToEdit(bplan) {
+      console.log(bplan);
       this.title = bplan.title;
       this.bplanStart = {id: bplan.startYear, title: `${bplan.startYear} год` };
-      this.bplanStartDefault = bplan.startYear - 2020;
+      this.bplanStartDefault = this.bplanStart.findIndex( item => item.id === bplan.startYear );
       this.selectedBPlanPeriod = bplan.periods;
       this.taxSelected = bplan.taxRate;
       this.editing = true;
@@ -378,41 +420,25 @@ export default {
         return
       }
 
+      bplan.id = this.activeBPlan.id;
+      bplan.path = this.activeBPlan.path;
       bplan.title = this.title;
       bplan.startYear = this.selectedBPlanStart.id;
       bplan.periods = this.selectedBPlanPeriod;
       bplan.taxRate = this.taxSelected; 
    
-
       await this.$store.dispatch('updateBPlan', bplan);  
+   
       this.loading = false;
       this.editing = false;
       this.title = '';
     },
 
     async deleteBPlan(bplan) {
-      this.$bvModal.msgBoxConfirm(`Вы действительно хотите удалить"${bplan.title}"?`, {
-        title: 'Подтвердите своё решение',
-        size: 'sm',
-        buttonSize: 'sm',
-        okVariant: 'danger',
-        okTitle: 'Да, удалить',
-        cancelTitle: 'Нет',
-        footerClass: 'p-2',
-        hideHeaderClose: false,
-        centered: false
-      })
-      .then(async (agree) => {
-        if (agree) {
-          this.deleting = true;
-          await this.$store.dispatch('deleteBPlan', bplan.path);
-          this.deleting = false;
-        }
-      })
-      .catch(err => {
-          // An error occurred
-          window.console.log('unable to delete business-plan document: ', err)
-      })
+      this.deleting = true;
+      await this.$store.dispatch('deleteBPlan', bplan.path);
+      this.setDefault();
+      this.deleting = false;
     },
 
     setDefault() {

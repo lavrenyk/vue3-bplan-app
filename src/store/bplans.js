@@ -9,6 +9,7 @@ export default {
 
     state: {
       activeBPlan: null,
+      userBPlans: null,
 
     },
 
@@ -18,19 +19,16 @@ export default {
 
     mutations: {
       setActiveBPlan(state, payload) {
-        console.log("Записываем данные активного плана:", payload);
         state.activeBPlan = payload;
       }
     },
 
     actions: {
-      // Create new BPlan
+      // CREATE: Create new BPlan
       async createBPlan({ commit }, payload) {
         const uid = firebase.auth.currentUser.uid;
         try { // Записываем установочные данные о новом Бизнес-плане
-
           const newBPlanRef = await firebase.addDoc(firebase.collection(firebase.db, `/users/${uid}/bplans`), payload);
-
           // Записываем данные основных разделов
           for (let topic of outlineTopics)  {
             await firebase.addDoc(firebase.collection(firebase.db, `${newBPlanRef.path}/outlineTopics`), topic);
@@ -90,24 +88,59 @@ export default {
         }
       },
 
-      // Get the path of the active (current) BPlan
+      // READ: Get the path of the active (current) BPlan
       async fetchCurrentBPlan( { commit } ) {
-        const uid = this.getters.getUserInfo.id;
-        console.log(uid)
-        // let activeBPlan = null;
-        const bplansQuery = firebase.query(
-          firebase.collection(firebase.db, `/users/${uid}/bplans`),
-          firebase.where("active", "==", true),
-        );
-        const bplansSnapshot = await firebase.getDocs(bplansQuery);
-        bplansSnapshot.forEach((bplan) => {
-          let bplanData = bplan.data();
-          bplanData.id = bplan.id;
-          bplanData.path = bplan.ref.path;
-          console.log(bplanData);
-          commit('setActiveBPlan', bplanData);
-        });
-        console.log("Get data of active plan:", this.getters.getActiveBPlan);
-      }
+        try {
+          const uid = this.getters.getUserInfo.id;
+          const bplansQuery = firebase.query(
+            firebase.collection(firebase.db, `/users/${uid}/bplans`),
+            firebase.where("active", "==", true),
+          );
+          const bplansSnapshot = await firebase.getDocs(bplansQuery);
+          bplansSnapshot.forEach((bplan) => {
+            let bplanData = bplan.data();
+            bplanData.id = bplan.id;
+            bplanData.path = bplan.ref.path;
+            console.log(bplanData);
+            commit('setActiveBPlan', bplanData);
+          }); 
+        } catch (error) {
+          console.log("Ошибка при загрузке активного проекта:", error);
+        }
+      },
+
+      // UPDATE: Update active BPlan project setup data
+      async updateBPlan({ commit }, payload) {
+        try {
+          const activeBPlanDocRef = firebase.doc(firebase.db, payload.path);
+          const activeBPlanDocSnap = await firebase.getDoc(activeBPlanDocRef);
+          // Delete not need information for the db
+          delete payload.id;
+          delete payload.path;
+          
+          // Update data in db
+          await firebase.updateDoc(activeBPlanDocRef, payload);
+          
+          // Recover nessery addition information for active BPlan
+          payload.id = activeBPlanDocSnap.id;
+          payload.path = activeBPlanDocSnap.path;
+          // and update it in storage
+          commit('setActiveBPlan', payload);
+        } catch (error) {
+          console.log('Не получается обновить данные бизнес-плана - ', error);
+        }
+        
+      },  
+
+      // DELETE: Delete active BPlan project from database and local zone
+      async deleteBPlan({ commit }, bplanPath) {
+        try {
+          const activeBPlanDocRef = firebase.doc(firebase.db, bplanPath);
+          await firebase.deleteDoc(activeBPlanDocRef)
+          commit('setActiveBPlan', null);
+        } catch (error) {
+          console.log('Unable to delete active Bplan data:', error)
+        }
+      } 
     }
   }

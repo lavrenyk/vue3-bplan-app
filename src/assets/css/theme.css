@@ -7665,9 +7665,9 @@ textarea.form-control-lg {
 }
 
 .spinner-border-sm {
-    --phoenix-spinner-width: 1.35rem;
-    --phoenix-spinner-height: 1.35rem;
-    --phoenix-spinner-border-width: 0.2em
+    --phoenix-spinner-width: 1rem;
+    --phoenix-spinner-height: 1rem;
+    --phoenix-spinner-border-width: 0.18em;
 }
 
 @-webkit-keyframes spinner-grow {
