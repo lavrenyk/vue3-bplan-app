@@ -3,6 +3,7 @@ import { createStore } from 'vuex';
 // app local modules
 import auth from "./auth";
 import user from "./user";
+import bplans from "./bplans";
 
 export default createStore({
   state: {
@@ -19,7 +20,6 @@ export default createStore({
         return JSON.parse(localStorage.getItem('userInfo'));
       }
     },
-    getActiveBPlan: state => state.activeBPlan,
   },
   mutations: {
     setUserInfo(state, payload) {
@@ -31,12 +31,14 @@ export default createStore({
       localStorage.setItem('userInfo', JSON.stringify(null));
     },
   },
+
   actions: {
-    
 
   },
+
   modules: {
     auth,
     user,
+    bplans,
   }
 })

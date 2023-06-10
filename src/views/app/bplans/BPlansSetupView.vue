@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div class="d-flex flex-start content-min-h">
     <div  v-if="activeBPlan"
       class="card mb-3">
       <div
         class="bg-holder d-none d-lg-block bg-card"
-        style="background-image:url(/img/illustrations/corner-4.png);background-position: right;">
+        :style="{ backgroundImage: 'url(' + require('@/assets/img/spot-illustrations/32.png') +')', backgroundPosition: 'right' }">
       </div>
       <!--/.bg-holder-->
       <div class="card-body">
@@ -34,20 +34,20 @@
                       </span>
                       <h5 class="font-proxima mb-0">{{activeBPlan.title}}</h5>
                       <span>{{activeBPlan.startYear}} - {{activeBPlan.startYear + (activeBPlan.periods - 1)}} года</span>
-                    </div>  
+                    </div>
                     <div class="ml-auto">
-                      <router-link to="/bplan" 
+                      <router-link to="/plan"
                         class="btn btn-outline-success btn-sm ml-2 ">
                         Выбрать
                       </router-link>
                       <div class="btn btn-outline-primary btn-sm ml-2" 
                         @click="setBPlanToEdit(activeBPlan)">
                         Настроить
-                      </div> 
+                      </div>
                       <div class="btn btn-outline-danger btn-sm ml-2 "
                         @click="deleteBPlan(activeBPlan)">
                         <i class="far fa-trash-alt"></i>
-                      </div> 
+                      </div>
                     </div>
                 </div>
               </b-overlay>
@@ -56,8 +56,7 @@
         </div>
       </div>
       <div class="card-footer pt-0">
-        <hr>
-        <small>
+        <small class="text-600">
           Вы достигли предельного количества активных проектов. <br>
           Для создания нового проекта, необходимо удалить текущий или связаться с администрацией для увеличения квоты.
         </small>
@@ -65,7 +64,7 @@
     </div>
 
     <!-- Редактирование данных проекта -->
-    <div v-if="editing" 
+    <div v-if="editing"
       class="card">
       <div class="card-body overflow-hidden p-3">
         <div class="row align-items-center justify-content-between">
@@ -78,14 +77,14 @@
               <div class="col-8 px-0">
                 <b-form-group
                   label="Название проекта:"
-                  labele-for="directCostTitle" 
+                  labele-for="directCostTitle"
                   :invalid-feedback="invalidFeedback"
                   :state="titleState">
-                  <b-form-input 
+                  <b-form-input
                     id="direcCostTitle"
                     v-model="title"
                     :state="titleState">
-                  </b-form-input>          
+                  </b-form-input>
                 </b-form-group>
               </div>
               <b-form-group
@@ -96,24 +95,23 @@
                   :selected="selectedBPlanStart"
                   :defaultItem="bplanStartDefault"
                   placeholder="----">
-                </custom-dropdown> 
+                </custom-dropdown>
               </b-form-group>
-              <b-form-group 
+              <b-form-group
                 class="col-4 p-0"
                 label="Срок планирования:">
-                <b-form-radio-group 
+                <b-form-radio-group
                   v-model="selectedBPlanPeriod"
                   :options="bplanPeriods"
                   value-field="item"
                   text-field="name"
                   disabled-field="disabled"
                   size="sm"
-                  class="mt-0" 
+                  class="mt-0"
                   name="radio-component">
                 </b-form-radio-group>
               </b-form-group>
-              
-              <b-form-group 
+              <b-form-group
                 class="col-8 p-0"
                 label="Режим налогооблажения:">
                 <b-form-radio-group
@@ -149,93 +147,104 @@
     </div>
     <!-- Конец формы редактирования проекта -->
 
-    <div class="d-flex flex-center content-min-h">
-      <div class="text-center py-9">
-        <div v-if="!activeBPlan" 
-          class="card" style="max-width: 70rem;">
-          <div class="card-body overflow-hidden p-lg-4">
-            <div class="row align-items-center justify-content-between">
-              <div class="col-lg-6">
-                <img class="img-fluid" src="@/assets/img/spot-illustrations/22_2.png" alt="">
-              </div>
-              <div class="col-lg-6 ps-lg-4 text-center text-lg-left">
-                <div  v-if="creating"
-                  class="row p-0 px-4">
+    <div class="text-center py-9">
+      <div v-if="!activeBPlan"
+        class="card" style="max-width: 70rem;">
+        <div class="card-body overflow-hidden p-lg-4">
+          <div class="row align-items-center justify-content-between">
+            <div class="col-lg-6">
+              <img class="img-fluid" src="@/assets/img/spot-illustrations/22_2.png" alt="">
+            </div>
+            <div class="col-lg-6 ps-lg-4 text-center text-lg-left">
+              <div  v-if="creating"
+                class="row p-0 px-4">
 
-                  <div class="col-12 px-0 mb-4">
-                    <b-form-group
-                      label="Название проекта:"
-                      labele-for="bplanTitle"
-                      :invalid-feedback="invalidFeedback"
-                      :state="titleState">
-                      <b-form-input
-                        id="bplanTitle"
-                        v-model="title"
-                        :state="titleState"
-                        :disabled="loading">
-                      </b-form-input>
-                    </b-form-group>
+                <div class="col-12 px-0 mb-4">
+                  <b-form-group
+                    label="Название проекта:"
+                    labele-for="bplanTitle"
+                    :invalid-feedback="invalidFeedback"
+                    :state="titleState">
+                    <b-form-input
+                      id="bplanTitle"
+                      v-model="title"
+                      :state="titleState"
+                      :disabled="loading">
+                    </b-form-input>
+                  </b-form-group>
+                </div>
+                <b-form-group
+                  class="col-6 p-0 text-start mb-4"
+                  label="Срок планирования:">
+                  <b-form-radio-group
+                    v-model="selectedBPlanPeriod"
+                    :options="bplanPeriods"
+                    value-field="item"
+                    text-field="name"
+                    disabled-field="disabled"
+                    :disabled="loading"
+                    class="mt-0"
+                    name="radio-component">
+                  </b-form-radio-group>
+                </b-form-group>
+                <b-form-group
+                  class="col-6 pr-6"
+                  label="Начало проекта:">
+                  <custom-dropdown
+                    v-model="bplanStart"
+                    :selected="selectedBPlanStart"
+                    :defaultItem="bplanStartDefault"
+                    :disabled="loading"
+                    placeholder="----"
+                    size="sm">
+                  </custom-dropdown>
+                </b-form-group>
+                <b-form-group
+                  class="col-12 p-0 text-start mb-5"
+                  label="Режим налогооблажения:">
+                  <b-form-radio-group
+                    v-model="taxSelected"
+                    :options="taxOptions"
+                    value-field="id"
+                    text-field="name"
+                    disabled-field="disabled"
+                    :disabled="loading"
+                    class="mt-0">
+                  </b-form-radio-group>
+                </b-form-group>
+                <div class="row">
+                  <div class="col-12">
+                    <b-button v-if="loading"
+                      class="float-right"
+                      variant="outline-success"
+                      size="sm"
+                      disabled>
+                      <b-spinner small type="grow"></b-spinner>
+                      В процессе...
+                    </b-button>
                   </div>
-                  <b-form-group
-                    class="col-6 p-0 text-start mb-4"
-                    label="Срок планирования:">
-                    <b-form-radio-group 
-                      v-model="selectedBPlanPeriod"
-                      :options="bplanPeriods"
-                      value-field="item"
-                      text-field="name"
-                      disabled-field="disabled"
-                      :disabled="loading"
-                      class="mt-0" 
-                      name="radio-component">
-                    </b-form-radio-group>
-                  </b-form-group>
-                  <b-form-group
-                    class="col-6 pr-6"
-                    label="Начало проекта:">
-                    <custom-dropdown
-                      v-model="bplanStart"
-                      :selected="selectedBPlanStart"
-                      :defaultItem="bplanStartDefault"
-                      :disabled="loading"
-                      placeholder="----"
-                      size="sm">
-                    </custom-dropdown>
-                  </b-form-group>
-                  <b-form-group
-                    class="col-12 p-0 text-start mb-5"
-                    label="Режим налогооблажения:">
-                    <b-form-radio-group
-                      v-model="taxSelected"
-                      :options="taxOptions"
-                      value-field="id"
-                      text-field="name"
-                      disabled-field="disabled"
-                      :disabled="loading"
-                      class="mt-0">
-                    </b-form-radio-group>
-                  </b-form-group>
-                  <b-button v-if="loading"
-                    class="float-right"
-                    variant="outline-success"
-                    size="sm"
-                    disabled>
-                    <b-spinner small type="grow"></b-spinner>
-                    В процессе...
-                  </b-button>
-                  <div v-if="!loading"
-                    class="btn btn-phoenix-primary mt-2"
-                    @click='createBPlan'>
-                    Создать
+                  <div class="col-8">
+                    <div v-if="!loading"
+                      class="btn btn-phoenix-primary d-block me-2 mt-2"
+                      @click='createBPlan'>
+                      Создать
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div v-if="!loading"
+                      class="btn btn-phoenix-danger mt-2"
+                      @click='creating = false'>
+                      Отменить
+                    </div>
                   </div>
                 </div>
-                <div v-if="!creating">
-                  <h3 class="">Еще нет проектов!</h3>
-                  <p class="text-700">Давайте изменять мир к лучшему</p>
-                  <div class="btn btn-phoenix-primary"
-                    @click="creating = true">
-                    Новый проект
-                  </div>
+              </div>
+              <div v-if="!creating">
+                <h3 class="">Еще нет проектов!</h3>
+                <p class="text-700">Давайте изменять мир к лучшему</p>
+                <div class="btn btn-phoenix-primary"
+                  @click="creating = true">
+                  Новый проект
                 </div>
               </div>
             </div>
@@ -243,7 +252,6 @@
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -254,10 +262,10 @@ export default {
   data: () => ({
     loading: false,
     deleting: false,
-    creating: true,
+    creating: false,
     editing: false,
     title: '',
-    bplanStartDefault: 0,
+    bplanStartDefault: 1,
     selectedBPlanStart: null,
     bplanPeriods: [
       { item: 3, name: '3 года' },
@@ -285,17 +293,15 @@ export default {
   computed: {
 
     activeBPlan() {
+      console.log(this.$store.getters.getActiveBPlan);
       return this.$store.getters.getActiveBPlan;
     },
 
-    /* Устанавливаем начальную дату проекта. Пока дата ставится от текущего года, но нужно сделать 
-     * так: чтобы пользователь смог задать год начала проекта, в том числе и задним числом
-     */
-    //TODO: Расширить возможность выбора года начала проекта!
-    bplanStart: { 
+    // Устанавливаем начальную дату проекта.
+    bplanStart: {
       get: function() {
         var options = [];
-        const currentYear = new Date().getFullYear();
+        const currentYear = new Date().getFullYear() - 1;
         for (let i = 0; i < 5; i ++) {
           options.push( { id: currentYear + i, title: `${currentYear + i} год` })
         }
@@ -304,7 +310,7 @@ export default {
       set: function(value) {
         if (value) {
           this.selectedBPlanStart = value;
-        } 
+        }
       }
     },
 
@@ -328,7 +334,6 @@ export default {
   },
 
   methods: {
-    
     async createBPlan() {
       this.loading = true;
       if (!this.titleState) {
@@ -341,12 +346,12 @@ export default {
         active: true,
         startYear: this.selectedBPlanStart.id,
         periods: this.selectedBPlanPeriod,
-        taxRate: this.taxSelected 
+        taxRate: this.taxSelected,
       };
 
       console.log(payload);
 
-      // await this.$store.dispatch('createBPlan', payload);  
+      await this.$store.dispatch('createBPlan', payload);
       this.loading = false;
       this.creating = false;
       this.title = '';
@@ -419,8 +424,20 @@ export default {
 </script>
 
 <style scoped>
-  .form-label {
-    text-transform: none;
-    text-align: start;
-  }
+.form-label {
+  text-transform: none;
+  text-align: start;
+}
+
+.notification:not(.notification-flush) {
+    border: 1px solid #132238;
+    background-color: #0e1c2f;
+    -webkit-box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,.5);
+    box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,.5);
+    border-radius: 0.375rem;
+    padding: 1rem;
+}
+.position-relative {
+    position: relative!important;
+}
 </style>
