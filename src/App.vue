@@ -72,9 +72,9 @@ export default defineComponent({
     // document.body.appendChild(leafletTilelayerColorfilter);
 
   },
+
   computed: {
     layout() {
-      console.log(this.$route.meta.layout || 'empty') + '-layout';
       return (this.$route.meta.layout || 'empty') + '-layout';
     }
   }

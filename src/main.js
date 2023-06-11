@@ -3,6 +3,7 @@ import BootstrapVueNext from 'bootstrap-vue-next'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import { auth } from '@/firebase'
 
 // Styles import
 import 'bootstrap/dist/css/bootstrap.css'
@@ -11,10 +12,15 @@ import 'bootstrap-vue-next/dist/bootstrap-vue-next.css'
 import './assets/css/theme.css'
 import './assets/css/user.css'
 
-
-
-createApp(App)
+// Check user auth in the app on loading
+let app
+if (auth.onAuthStateChanged(() => {
+  if (!app) {
+    app = createApp(App)
     .use(store)
     .use(router)
     .use(BootstrapVueNext)
     .mount('#app')
+  }
+}));
+

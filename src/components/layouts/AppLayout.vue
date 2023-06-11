@@ -21,6 +21,7 @@ export default defineComponent({
     TheAppVerticalNavbar,
     TheAppFooter,
   },
+
   async mounted() {
     var body = document.querySelector('body');
     var topNavSlim = document.querySelector('#topNavSlim');

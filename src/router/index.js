@@ -40,7 +40,7 @@ const routes = [
   // BPlan setup section
   {
     path: '/projects',
-    name: 'bplan-projects-setup-page',
+    name: 'bplan-projects-page',
     meta: {layout: 'app', auth: true},
     component: () => import('@/views/app/projects/ProjectSetupView.vue'),
   },
@@ -56,7 +56,7 @@ const routes = [
   // Plan section
   {
     path: '/plan',
-    name: 'plan-page',
+    name: 'bplan-page',
     meta: {layout: 'app', auth: true},
     component: () => import('@/views/app/plan/PlanMainView.vue'),
   },
@@ -124,6 +124,9 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const requireAuth = to.matched.some(record => record.meta.auth)
   const userInfo = store.getters.getUserInfo;
+
+  console.log("Hello from Router change!");
+
   if (requireAuth && !userInfo) {
     next('/login')
   } else {
