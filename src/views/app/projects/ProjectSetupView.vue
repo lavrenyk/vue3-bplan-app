@@ -154,10 +154,10 @@
     </div>
     <!-- Конец формы редактирования проекта -->
 
-    <div class="d-flex flex-center content-min-h">
+    <div v-if="!activeBPlan"
+      class="d-flex flex-center content-min-h">
       <div class="text-center py-9">
-        <div v-if="!activeBPlan"
-          class="card" style="max-width: 70rem;">
+        <div class="card" style="max-width: 70rem;">
           <div class="card-body overflow-hidden p-lg-4">
             <div class="row align-items-center justify-content-between">
               <div class="col-lg-6">
@@ -260,6 +260,7 @@
     </div>
   </div>
 
+  <!-- Delete project modal -->
   <div v-if="activeBPlan"
     class="modal fade" id="deleteProjectModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
@@ -280,11 +281,11 @@
         </div>
         <div class="modal-footer">
           <button v-if="deleting"
-            class="d-flex align-items-center btn btn-danger btn-sm me-2" type="button" disabled="" data-bs-dismiss="modal">
+            class="d-flex align-items-center btn btn-danger btn-sm me-2" type="button" disabled="true" data-bs-dismiss="modal">
             <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
             Удаление проекта...
           </button>
-          <button v-if="!deleting" @click.prevent="deleteBPlan(activeBPlan)"
+          <button v-if="!deleting" @click.prevent="deleteBPlan(activeBPlan)" data-bs-dismiss="modal"
             class="btn btn-phoenix-danger" type="button">
             Да!
           </button>
@@ -425,10 +426,10 @@ export default {
       bplan.title = this.title;
       bplan.startYear = this.selectedBPlanStart.id;
       bplan.periods = this.selectedBPlanPeriod;
-      bplan.taxRate = this.taxSelected; 
-   
-      await this.$store.dispatch('updateBPlan', bplan);  
-   
+      bplan.taxRate = this.taxSelected;
+
+      await this.$store.dispatch('updateBPlan', bplan);
+
       this.loading = false;
       this.editing = false;
       this.title = '';
@@ -438,6 +439,7 @@ export default {
       this.deleting = true;
       await this.$store.dispatch('deleteBPlan', bplan.path);
       this.setDefault();
+      this.modal = false;
       this.deleting = false;
     },
 

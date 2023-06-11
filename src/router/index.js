@@ -40,9 +40,9 @@ const routes = [
   // BPlan setup section
   {
     path: '/projects',
-    name: 'bplans-setup-page',
+    name: 'bplan-projects-setup-page',
     meta: {layout: 'app', auth: true},
-    component: () => import('@/views/app/bplans/BPlansSetupView.vue'),
+    component: () => import('@/views/app/projects/ProjectSetupView.vue'),
   },
 
   // Pitch section

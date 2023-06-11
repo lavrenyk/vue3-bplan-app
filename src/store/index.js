@@ -4,6 +4,7 @@ import { createStore } from 'vuex';
 import auth from "./auth";
 import user from "./user";
 import bplans from "./bplans";
+import outline from "./modules/outline";
 
 export default createStore({
   state: {
@@ -40,5 +41,6 @@ export default createStore({
     auth,
     user,
     bplans,
+    outline
   }
 })

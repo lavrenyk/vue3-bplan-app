@@ -21,7 +21,7 @@ export default defineComponent({
     TheAppVerticalNavbar,
     TheAppFooter,
   },
-  mounted() {
+  async mounted() {
     var body = document.querySelector('body');
     var topNavSlim = document.querySelector('#topNavSlim');
     var navbarVertical = document.querySelector('.navbar-vertical');
@@ -30,6 +30,9 @@ export default defineComponent({
     navbarVertical.removeAttribute('style');
     body.classList.add('nav-slim');
     topNavSlim.classList.add('navbar-darker');
+
+    await this.$store.dispatch('fetchUserInfo');
+    await this.$store.dispatch('fetchCurrentOutline');
   }
 })
 </script>

@@ -17,7 +17,7 @@ export default defineComponent({
     MainLayout,
     AppLayout
   },
-  mounted() {
+  async mounted() {
 
     let bootstrap = document.createElement('script');
     bootstrap.setAttribute('src', '/assets/vendors/bootstrap/bootstrap.min.js');
@@ -70,7 +70,6 @@ export default defineComponent({
     // let leafletTilelayerColorfilter = document.createElement('script');
     // leafletTilelayerColorfilter.setAttribute('src', '/assets/vendors/leaflet.tilelayer.colorfilter/leaflet-tilelayer-colorfilter.min.js');
     // document.body.appendChild(leafletTilelayerColorfilter);
-
 
   },
   computed: {

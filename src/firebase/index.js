@@ -3,7 +3,7 @@ import { getAuth } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
 import { getFirestore,
   doc, getDoc, setDoc, addDoc, getDocs, updateDoc, deleteDoc,
-  collection, query, where  
+  collection, query, where, orderBy
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -26,5 +26,5 @@ const db = getFirestore();
 export {
   analytics, auth, db,
   doc, addDoc, getDocs, getDoc, setDoc, updateDoc, deleteDoc,
-  collection, query, where
+  collection, query, where, orderBy
 }

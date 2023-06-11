@@ -26,7 +26,7 @@ export default {
     actions: {
       // CREATE: Create new BPlan
       async createBPlan({ commit }, payload) {
-        const uid = firebase.auth.currentUser.uid;
+        const uid = this.getters.getUserInfo.id;
         try { // Записываем установочные данные о новом Бизнес-плане
           const newBPlanRef = await firebase.addDoc(firebase.collection(firebase.db, `/users/${uid}/bplans`), payload);
           // Записываем данные основных разделов
@@ -103,7 +103,7 @@ export default {
             bplanData.path = bplan.ref.path;
             console.log(bplanData);
             commit('setActiveBPlan', bplanData);
-          }); 
+          });
         } catch (error) {
           console.log("Ошибка при загрузке активного проекта:", error);
         }
@@ -117,10 +117,10 @@ export default {
           // Delete not need information for the db
           delete payload.id;
           delete payload.path;
-          
+
           // Update data in db
           await firebase.updateDoc(activeBPlanDocRef, payload);
-          
+
           // Recover nessery addition information for active BPlan
           payload.id = activeBPlanDocSnap.id;
           payload.path = activeBPlanDocSnap.path;
@@ -129,8 +129,7 @@ export default {
         } catch (error) {
           console.log('Не получается обновить данные бизнес-плана - ', error);
         }
-        
-      },  
+      },
 
       // DELETE: Delete active BPlan project from database and local zone
       async deleteBPlan({ commit }, bplanPath) {
