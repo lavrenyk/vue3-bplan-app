@@ -125,8 +125,6 @@ router.beforeEach((to, from, next) => {
   const requireAuth = to.matched.some(record => record.meta.auth)
   const userInfo = store.getters.getUserInfo;
 
-  console.log("Hello from Router change!");
-
   if (requireAuth && !userInfo) {
     next('/login')
   } else {

@@ -1,5 +1,5 @@
 <template>
-    <div class="ps-3 mt-3">
+  <div class="ps-3 mt-3">
     <p class="navbar-vertical-label navbar-vertical-label mt-2 mb-0 ps-0">
       Нужна помощь?
     </p>
