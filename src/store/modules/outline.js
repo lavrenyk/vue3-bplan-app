@@ -8,16 +8,12 @@ export default {
     outlineTables: [],
     outlineCharts: [],
     currentOutline: null,
-    selectedOutlineChapter: 0
+    selectedOutlineChapter: []
   },
 
   getters: {
     getOutlineDraggingStatus: state => {
       return state.outlineDragging
-    },
-
-    getOutlineItem: state => {
-      return state.outlineItem
     },
 
     getCurrentOutline: state => {
@@ -67,7 +63,7 @@ export default {
       if (state.currentOutline) {
         state.selectedOutlineChapter = state.currentOutline[chapterIndex];
       } else {
-        state.selectedOutlineChapter = 0;
+        state.selectedOutlineChapter = [];
       }
     },
 
@@ -92,12 +88,31 @@ export default {
 
       const currentOutline = []
       for (const chapter of activeBPlanDocOutlineSnap.docs) {
+
+        // Load Chapter's sections data
+        let sections = [];
         const sectionsDataQuery = query(collection(db, `${chapter.ref.path}`, 'sections'), orderBy('index'));
         const sectionsDataSnap = await getDocs(sectionsDataQuery);
-
-        let sections = [];
         for (const section of sectionsDataSnap.docs) {
-          sections.push(section.data());
+
+          // Load Section's topics data
+          let topics = [];
+          const topicsDataQuery = query(collection(db, `${section.ref.path}`, 'topics'), orderBy('index'));
+          const topicsDataSnap = await getDocs(topicsDataQuery);
+          for (const topic of topicsDataSnap.docs) {
+            let topicItem = topic.data();
+            topicItem.id = topic.id;
+            topicItem.path = topic.ref.path;
+            topicItem.parentId = section.id;
+            topics.push(topicItem);
+          }
+
+          sections.push({
+            id: section.id,
+            path: section.ref.path,
+            title: section.data().title,
+            topics: topics
+          });
         }
 
         currentOutline.push({

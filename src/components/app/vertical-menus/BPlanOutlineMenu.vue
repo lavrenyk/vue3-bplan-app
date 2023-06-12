@@ -15,7 +15,8 @@
     <div v-if="currentOutline">
       <div v-for="(chapter, index) in currentOutline" :key="chapter.id"
         class="nav-item-wrapper">
-        <a class="nav-link dropdown-indicator label-1 mx-2 ps-1"
+        <a @click.prevent="showChapter(index)"
+          class="nav-link dropdown-indicator label-1 mx-2 ps-1"
           :href="`#${chapter.id}`"
           role="button"
           data-bs-toggle="collapse"
@@ -36,7 +37,7 @@
             data-bs-parent="#navbarVerticalCollapse" :id="`${chapter.id}`" style="">
             <li v-for="section in chapter.sections" :key="section.id"
               class="nav-item pb-1">
-              <a class="nav-link ps-2 py-0"
+              <div class="nav-link ps-2 py-0"
                 href="#"
                 data-bs-toggle=""
                 :aria-expanded="index == 0">
@@ -45,7 +46,7 @@
                     {{ section.title }}
                   </span>
                 </div>
-              </a>
+              </div>
             </li>
           </ul>
         </div>
@@ -94,9 +95,6 @@ export default {
   computed: {
     currentOutline() {
       let currentOutline = this.$store.getters.getCurrentOutline;
-      console.log(
-        "show current outline in the menu!",
-        currentOutline);
       return currentOutline;
     }
   },
@@ -110,5 +108,6 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
 
 </style>
