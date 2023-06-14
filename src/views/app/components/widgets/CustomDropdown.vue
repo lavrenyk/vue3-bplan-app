@@ -1,7 +1,6 @@
 <template>
 
   <div class="me-1 d-grid gap-2">
-    
     <button class="btn mb-1 btn-phoenix-secondary btn-block border"
       :class="{
         'btn-sm fs--1': size == 'sm',
@@ -30,8 +29,8 @@
   </div>
 
 </template>
-  
-  <script>
+
+<script>
   export default {
     props: {
       modelValue: {
@@ -39,7 +38,7 @@
         default: function () {
           return []
         }
-      }, 
+      },
       placeholder: {
         type: String,
         default: "Выберите из списка..."
@@ -56,18 +55,19 @@
       },
       disabled: Boolean
     },
-  
+
     data: () => ({
       selected: null
     }),
-  
+
     mounted() {
       this.input(this.modelValue[this.defaultItem])
     },
-  
+
     unmounted() {
       this.input(null)
     },
+
     computed: {
       selectedTitle() {
         if (this.selected) {
@@ -77,6 +77,7 @@
         }
       },
     },
+
     methods: {
       input(item) {
         if (item) {

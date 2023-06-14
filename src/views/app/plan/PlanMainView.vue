@@ -12,31 +12,31 @@
     </div>
   </div>
 
-  <div class="row mt-3 w-100">
+  <div class="row mt-6 ms-2 w-100">
     <div class="col-12 col-md-12 pl-5" style="max-width: 800px;"
       v-if="selectedOutlineChapter.length != 0">
-      <h2 class="font-proxima font-weight-bold text-primary">
+      <h2 class="font-weight-bold text-primary">
         {{selectedOutlineChapter.title}}
       </h2>
       <div class="mt-2 mb-3"
         v-for="section in selectedOutlineChapter.sections" :key="section.id">
-        <h3 class="font-proxima text-secondary my-3 text-800">
+        <h3 class="text-1000 my-3 text-800">
           {{section.title}}
         </h3>
         <div class="mt-2 topic"
           v-for="topic in section.topics"
           :key="topic.id">
           <div class="d-flex align-items-center topic-head">
-            <h5
+            <h4
               class="font-proxima mb-0"
               :class="{
                 'd-none text-300': topic.showTitle == false,
                 'text-600 mt-2': topic.showTitle == true || !topic.showTitle
               }">
               {{topic.title}}
-            </h5>
+            </h4>
             <div v-if="topic.type == 'textTopic'"
-              class="btn btn-outline-secondary btn-sm ml-auto edit-btn"
+              class="btn btn-phoenix-secondary btn-sm ms-auto edit-btn"
               @click="setTopicToEdit(topic)"
               v-b-modal.topicItemEdit>
               <i class="far fa-edit"></i>
@@ -48,7 +48,7 @@
             <p v-html="topic.body" class="font-proxima"></p>
           </div>
           <div v-else-if="topic.type == 'textTopic'">
-            <p class="mt-2 fs--1 text-300 pl-4">
+            <p class="mt-2 fs--1 text-900 pl-4">
               <i>Абзац еще не начат, самое время приступить!</i>
             </p>
           </div>
@@ -65,12 +65,12 @@
           <div class="d-flex justify-content-between"
             :class="{'mt-3': topic.body == ''}">
             <div class="comments">
-              <i class="far fa-comments mr-2"></i>
+              <i class="far fa-comments me-2"></i>
               <small>Комментарии</small>
             </div>
-            <div class="text-300 edited-stamp">
+            <div class="text-600 edited-stamp">
               <small>
-                <i class="far fa-edit"></i> 
+                <i class="far fa-edit me-2"></i> 
                 среда, 23.03.2020
               </small>
             </div>
@@ -81,10 +81,11 @@
   </div>
 
   <!-- Модальное окно для редактирования текстовых данных -->
-  <!-- <topic-edit-modal :topic="topicToEdit"  /> -->
+  <topic-edit-modal :topic="topicToEdit"  />
 </template>
 
 <script>
+import TopicEditModal from "@/views/app/components/widgets/modals/TopicEditModal.vue"
 
 export default {
   data: () => ({
@@ -94,6 +95,10 @@ export default {
     editorData: '<p>Content of the editor.</p><blockquote><p>Тест цитаты</p></blockquote><p>&nbsp;</p>',
     chartId: ''
   }),
+
+  components: {
+    TopicEditModal,
+  },
 
   computed: {
     currentOutline() {
