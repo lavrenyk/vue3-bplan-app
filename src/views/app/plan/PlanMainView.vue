@@ -109,6 +109,16 @@ export default {
     },
   },
 
+  methods: {
+    setTopicToEdit(topic) {
+      this.topicToEdit = topic
+    },
+
+    loadCurrentOutline() {
+      this.$store.dispatch('fetchCurrentOutline')
+    }
+  }
+
 
 }
 </script>

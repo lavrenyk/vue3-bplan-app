@@ -6873,7 +6873,7 @@ textarea.form-control-lg {
 .modal-backdrop {
     --phoenix-backdrop-zindex: 1050;
     --phoenix-backdrop-bg: #000000;
-    --phoenix-backdrop-opacity: 0.5;
+    --phoenix-backdrop-opacity: 0.9;
     position: fixed;
     top: 0;
     left: 0;
@@ -6954,7 +6954,7 @@ textarea.form-control-lg {
 
 @media(min-width: 576px) {
     .modal {
-        --phoenix-modal-margin: 1.75rem;
+        --phoenix-modal-margin: 2.75rem;
         --phoenix-modal-box-shadow: 0px 2px 4px -2px rgba(36, 40, 46, 0.08)
     }
 
