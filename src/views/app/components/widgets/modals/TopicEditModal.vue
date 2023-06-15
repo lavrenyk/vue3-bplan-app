@@ -11,8 +11,7 @@
 
       <div class="row d-flex" style="min-height: 60vh;">
         <div class="col-3 bg-soft text-center px-1" style="border-top-left-radius: 0.375rem;">
-          <h6 class="font-proxima text-uppercase py-2 border-bottom">Что написать?</h6>
-          <div class="accordion" id="accordionExample" style="max-height: 80vh;">
+          <div class="accordion" id="accordionExample" style="height: 60vh;">
               <div class="accordion-item border-300">
                 <h2 class="accordion-header" id="headingOne">
                   <button class="accordion-button text-1000" type="button"
@@ -24,15 +23,25 @@
                 <div class="accordion-collapse collapse show" id="collapseOne"
                   aria-labelledby="headingOne"
                   data-bs-parent="#accordionExample">
-                  <div class="accordion-body text-800 pt-0">
-                    <strong>This is the first item&apos;s accordion body.</strong>
-                    It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element.
-                    These classes control the overall appearance, as well as the showing and hiding via CSS transitions.
-                    You can modify any of this with custom CSS or overriding our default variables.
-                    It&apos;s also worth noting that just about any HTML can go within the
-                    <code>.accordion-body</code>,
-                    though the transition does limit overflow.
+                  <div class="scroll-area pt-2 border-top border-100">
+                    <div class="accordion-body text-start text-800 pt-0">
+                      <strong>This is the first item&apos;s accordion body.</strong>
+                      It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element.
+                      These classes control the overall appearance, as well as the showing and hiding via CSS transitions.
+                      You can modify any of this with custom CSS or overriding our default variables.
+                      It&apos;s also worth noting that just about any HTML can go within the
+                      <code>.accordion-body</code>,
+                      though the transition does limit overflow.
+                      <strong>This is the first item&apos;s accordion body.</strong>
+                      It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element.
+                      These classes control the overall appearance, as well as the showing and hiding via CSS transitions.
+                      You can modify any of this with custom CSS or overriding our default variables.
+                      It&apos;s also worth noting that just about any HTML can go within the
+                      <code>.accordion-body</code>,
+                      though the transition does limit overflow.
+                    </div>
                   </div>
+
                 </div>
               </div>
               <div class="accordion-item">
@@ -46,26 +55,30 @@
                 <div class="accordion-collapse collapse" id="collapseTwo"
                   aria-labelledby="headingTwo"
                   data-bs-parent="#accordionExample">
-                  <div class="accordion-body pt-0">
-                    <strong>This is the second item&apos;s accordion body.</strong>
-                    It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element.
-                    These classes control the overall appearance, as well as the showing and hiding via CSS transitions.
-                    You can modify any of this with custom CSS or overriding our default variables.
-                    It&apos;s also worth noting that just about any HTML can go within the
-                    <code>.accordion-body</code>,
-                    though the transition does limit overflow.
+                  <div class="scroll-area pt-2 border-top border-100">
+                    <div class="accordion-body text-start text-800 pt-0">
+                      <strong>This is the second item&apos;s accordion body.</strong>
+                      It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element.
+                      These classes control the overall appearance, as well as the showing and hiding via CSS transitions.
+                      You can modify any of this with custom CSS or overriding our default variables.
+                      It&apos;s also worth noting that just about any HTML can go within the
+                      <code>.accordion-body</code>,
+                      though the transition does limit overflow.
+                    </div>
                   </div>
                 </div>
               </div>
-            <div class="accordion-item">
+            <div class="accordion-item border-bottom-0">
               <h2 class="accordion-header" id="headingThree">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                   How long does it take to ship my order?
                 </button>
               </h2>
               <div class="accordion-collapse collapse" id="collapseThree" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                <div class="accordion-body pt-0">
-                  <strong>This is the third item&apos;s accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It&apos;s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                <div class="scroll-area pt-2 border-top border-100">
+                  <div class="accordion-body text-start text-800 pt-0">
+                    <strong>This is the third item&apos;s accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It&apos;s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                  </div>
                 </div>
               </div>
             </div>
@@ -73,7 +86,7 @@
         </div>
         <div class="col-9 bg-white px-0">
           <div class="d-flex align-items-center">
-            <input class="h3 border-0 font-weight-normal p-3 mb-0 mr-auto"
+            <input class="h3 border-0 font-weight-normal p-3 mb-0 me-auto"
               :class="{
                 'text-800': updatedTopic.showTitle == true,
                 'text-300': updatedTopic.showTitle == false
@@ -84,11 +97,11 @@
               :disabled="!titleEdit"
               v-model.lazy="updatedTopic.title"
             />
-            <div class="btn btn-outline-dark btn-sm edit-btn mr-3"
+            <div class="btn btn-outline-dark btn-sm edit-btn me-3"
               @click="startEditing()">
               <i class="fas fa-pencil-alt"></i>
             </div>
-            <div class="form-group form-check mb-0 mr-4">
+            <div class="form-group form-check mb-0 me-3 ps-0">
               <b-form-checkbox id="showTitle"
                 v-model="updatedTopic.showTitle"
                 class="form-check-input"
@@ -109,14 +122,14 @@
 
           <div class="d-flex col-12 text-right">
             <div v-if="!savingData"
-              class="btn btn-phoenix-danger btn-sm ms-auto m-2"
-              @click="saveData()">
-              Отмена
-            </div>
-            <div v-if="!savingData"
-              class="btn btn-phoenix-success btn-sm ms-1 m-2"
+              class="btn btn-phoenix-success btn-sm ms-auto my-2"
               @click="saveData()">
               Ок, готово!
+            </div>
+            <div v-if="!savingData"
+              class="btn btn-phoenix-danger btn-sm m-2"
+              @click="showModal = false">
+              Отмена
             </div>
             <div v-if="savingData"
               class="btn btn-outline-success btn-sm ml-auto m-2"
@@ -142,9 +155,8 @@ import { ref } from 'vue';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import '@ckeditor/ckeditor5-build-classic/build/translations/ru';
 
-let showModal = ref(true);
+let showModal = ref(false);
 let savingData = ref(false);
-// let showTitle = ref(false);
 let titleEdit = ref(false);
 let updatedTopic = ref({
   showTitle: false,
@@ -250,9 +262,10 @@ async function saveData() {
    }
  }
 
- .scroll-area2 {
+ .scroll-area {
   position: relative;
-  height: 60vh;
+  height: 58vh;
+  overflow-y: scroll;
 }
 
 </style>
