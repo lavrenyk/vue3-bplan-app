@@ -6873,7 +6873,7 @@ textarea.form-control-lg {
 .modal-backdrop {
     --phoenix-backdrop-zindex: 1050;
     --phoenix-backdrop-bg: #000000;
-    --phoenix-backdrop-opacity: 0.9;
+    --phoenix-backdrop-opacity: 0.8;
     position: fixed;
     top: 0;
     left: 0;
