@@ -17,55 +17,41 @@
                   <button class="accordion-button text-1000" type="button"
                     data-bs-toggle="collapse" data-bs-target="#collapseOne"
                     aria-expanded="true" aria-controls="collapseOne">
-                    How long does it take to ship my order?
+                    Что написать?
                   </button>
                 </h2>
                 <div class="accordion-collapse collapse show" id="collapseOne"
                   aria-labelledby="headingOne"
                   data-bs-parent="#accordionExample">
-                  <div class="scroll-area pt-2 border-top border-100">
-                    <div class="accordion-body text-start text-800 pt-0">
-                      <strong>This is the first item&apos;s accordion body.</strong>
-                      It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element.
-                      These classes control the overall appearance, as well as the showing and hiding via CSS transitions.
-                      You can modify any of this with custom CSS or overriding our default variables.
-                      It&apos;s also worth noting that just about any HTML can go within the
-                      <code>.accordion-body</code>,
-                      though the transition does limit overflow.
-                      <strong>This is the first item&apos;s accordion body.</strong>
-                      It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element.
-                      These classes control the overall appearance, as well as the showing and hiding via CSS transitions.
-                      You can modify any of this with custom CSS or overriding our default variables.
-                      It&apos;s also worth noting that just about any HTML can go within the
-                      <code>.accordion-body</code>,
-                      though the transition does limit overflow.
+                  <perfect-scrollbar>
+                    <div class="card-body pt-2 border-top border-100">
+                      <div v-html="topic.desc" class="accordion-body text-start text-800 pt-0 fs--1">
+                      </div>
                     </div>
-                  </div>
+                    
+                  </perfect-scrollbar>
 
                 </div>
               </div>
-              <div class="accordion-item">
+              <div v-for="example in topic.examples" :key="example.title"
+                class="accordion-item">
                 <h2 class="accordion-header" id="headingTwo">
                   <button class="accordion-button collapsed" type="button"
                     data-bs-toggle="collapse" data-bs-target="#collapseTwo"
                     aria-expanded="false" aria-controls="collapseTwo">
-                    How long does it take to ship my order?
+                    {{ example.title }}
                   </button>
                 </h2>
                 <div class="accordion-collapse collapse" id="collapseTwo"
                   aria-labelledby="headingTwo"
                   data-bs-parent="#accordionExample">
-                  <div class="scroll-area pt-2 border-top border-100">
-                    <div class="accordion-body text-start text-800 pt-0">
-                      <strong>This is the second item&apos;s accordion body.</strong>
-                      It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element.
-                      These classes control the overall appearance, as well as the showing and hiding via CSS transitions.
-                      You can modify any of this with custom CSS or overriding our default variables.
-                      It&apos;s also worth noting that just about any HTML can go within the
-                      <code>.accordion-body</code>,
-                      though the transition does limit overflow.
+                  <perfect-scrollbar>
+                    <div class="pt-2 border-top border-100">
+                      <div v-html="example.body" class="accordion-body text-start text-800 pt-0">
+                        
+                      </div>
                     </div>
-                  </div>
+                  </perfect-scrollbar>
                 </div>
               </div>
             <div class="accordion-item border-bottom-0">
@@ -75,11 +61,13 @@
                 </button>
               </h2>
               <div class="accordion-collapse collapse" id="collapseThree" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                <div class="scroll-area pt-2 border-top border-100">
-                  <div class="accordion-body text-start text-800 pt-0">
-                    <strong>This is the third item&apos;s accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It&apos;s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                <perfect-scrollbar>
+                  <div class="pt-2 border-top border-100">
+                    <div class="accordion-body text-start text-800 pt-0">
+                      <strong>This is the third item&apos;s accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It&apos;s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                    </div>
                   </div>
-                </div>
+                </perfect-scrollbar>
               </div>
             </div>
           </div>
@@ -88,14 +76,14 @@
           <div class="d-flex align-items-center">
             <input class="h3 border-0 font-weight-normal p-3 mb-0 me-auto"
               :class="{
-                'text-800': updatedTopic.showTitle == true,
-                'text-300': updatedTopic.showTitle == false
+                'text-800': topic.showTitle == true,
+                'text-300': topic.showTitle == false
               }"
               style="font-family: 'Proxima Nova'; background: transparent; outline: none; min-width: 60%"
               type="text"
               ref="title"
               :disabled="!titleEdit"
-              v-model.lazy="updatedTopic.title"
+              v-model.lazy="topic.title"
             />
             <div class="btn btn-outline-dark btn-sm edit-btn me-3"
               @click="startEditing()">
@@ -103,7 +91,7 @@
             </div>
             <div class="form-group form-check mb-0 me-3 ps-0">
               <b-form-checkbox id="showTitle"
-                v-model="updatedTopic.showTitle"
+                v-model="topic.showTitle"
                 class="form-check-input"
                 value="true"
                 uncheked-value="false">
@@ -116,7 +104,7 @@
 
           <ckeditor
             :editor="editor"
-            v-model="updatedTopic.body"
+            v-model="topic.body"
             :config="editorConfig"
           />
 
@@ -150,18 +138,19 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, defineProps, computed } from 'vue';
 
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import '@ckeditor/ckeditor5-build-classic/build/translations/ru';
 
+const props = defineProps(['initialTopic']);
+
+console.log('Props: ', props.initialTopic);
+
 let showModal = ref(false);
 let savingData = ref(false);
 let titleEdit = ref(false);
-let updatedTopic = ref({
-  showTitle: false,
-  title: 'test'
-});
+let updatedTopic = ref(null);
 let editorConfig = {
   language: 'ru',
   heading: {
@@ -172,6 +161,15 @@ let editorConfig = {
   disallowedContent: 'blockquote p',
 };
 let editor = ClassicEditor;
+
+let topic = computed({
+  get() {
+    return updatedTopic.value || props.initialTopic;
+  },
+  set(newValue) {
+    updatedTopic.value = newValue;
+  }
+})
 
 
 function startEditing() {
@@ -262,10 +260,8 @@ async function saveData() {
    }
  }
 
- .scroll-area {
-  position: relative;
+ .ps {
   height: 58vh;
-  overflow-y: scroll;
-}
+ }
 
 </style>

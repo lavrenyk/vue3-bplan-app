@@ -81,7 +81,9 @@
   </div>
 
   <!-- Модальное окно для редактирования текстовых данных -->
-  <topic-edit-modal :topic="topicToEdit"  />
+  <topic-edit-modal v-if="topicToEdit"
+    :initialTopic="topicToEdit" 
+  />
 </template>
 
 <script>
@@ -111,7 +113,7 @@ export default {
 
   methods: {
     setTopicToEdit(topic) {
-      this.topicToEdit = topic
+      this.topicToEdit = topic;
     },
 
     loadCurrentOutline() {
