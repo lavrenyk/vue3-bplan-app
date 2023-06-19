@@ -11,79 +11,69 @@
 
       <div class="row d-flex" style="min-height: 60vh;">
         <div class="col-3 bg-soft text-center px-1" style="border-top-left-radius: 0.375rem;">
-          <div class="accordion" id="accordionExample" style="height: 60vh;">
-              <div class="accordion-item border-300">
-                <h2 class="accordion-header" id="headingOne">
-                  <button class="accordion-button text-1000" type="button"
-                    data-bs-toggle="collapse" data-bs-target="#collapseOne"
-                    aria-expanded="true" aria-controls="collapseOne">
-                    Что написать?
-                  </button>
-                </h2>
-                <div class="accordion-collapse collapse show" id="collapseOne"
-                  aria-labelledby="headingOne"
-                  data-bs-parent="#accordionExample">
-                  <perfect-scrollbar>
-                    <div class="card-body pt-2 border-top border-100">
-                      <div v-html="topic.desc" class="accordion-body text-start text-800 pt-0 fs--1">
-                      </div>
-                    </div>
-                    
-                  </perfect-scrollbar>
-
-                </div>
-              </div>
-              <div v-for="example in topic.examples" :key="example.title"
-                class="accordion-item">
-                <h2 class="accordion-header" id="headingTwo">
-                  <button class="accordion-button collapsed" type="button"
-                    data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-                    aria-expanded="false" aria-controls="collapseTwo">
-                    {{ example.title }}
-                  </button>
-                </h2>
-                <div class="accordion-collapse collapse" id="collapseTwo"
-                  aria-labelledby="headingTwo"
-                  data-bs-parent="#accordionExample">
-                  <perfect-scrollbar>
-                    <div class="pt-2 border-top border-100">
-                      <div v-html="example.body" class="accordion-body text-start text-800 pt-0">
-                        
-                      </div>
-                    </div>
-                  </perfect-scrollbar>
-                </div>
-              </div>
-            <div class="accordion-item border-bottom-0">
-              <h2 class="accordion-header" id="headingThree">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                  How long does it take to ship my order?
+          <div class="accordion" id="helpSection" style="height: 60vh;">
+            <div class="accordion-item border-300">
+              <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button text-1000" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#collapseHelp"
+                  aria-expanded="true" aria-controls="collapseOne">
+                  Что написать?
+                  <span class="badge badge-phoenix badge-phoenix-info fs--3"
+                    style="position: absolute; top: 0px; right: -7px;">
+                    Подсказка
+                  </span>
                 </button>
               </h2>
-              <div class="accordion-collapse collapse" id="collapseThree" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+              <div class="accordion-collapse collapse show" id="collapseHelp"
+                aria-labelledby="headingOne"
+                data-bs-parent="#helpSection">
+                <perfect-scrollbar>
+                  <div class="card-body pt-2 border-top border-100">
+                    <div v-html="topic.desc" class="accordion-body text-start text-800 pt-0 fs--1">
+                    </div>
+                  </div>
+                </perfect-scrollbar>
+
+              </div>
+            </div>
+            <!-- <div v-for="(example, index) in topic.examples" :key="example.title"
+              class="accordion-item" :class="{'border-bottom-0': topic.examples.length - 1 == index}">
+              <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button"
+                  data-bs-toggle="collapse" :data-bs-target="'#example' + index"
+                  aria-expanded="false" aria-controls="collapseTwo">
+                  {{ example.title }}
+                  <span class="badge badge-phoenix badge-phoenix-info fs--3"
+                    style="position: absolute; top: 0px; right: -7px;">
+                    Пример {{ index + 1 }}
+                  </span>
+                </button>
+              </h2>
+              <div class="accordion-collapse collapse" :id="'example' + index"
+                aria-labelledby="headingTwo"
+                data-bs-parent="#helpSection">
                 <perfect-scrollbar>
                   <div class="pt-2 border-top border-100">
-                    <div class="accordion-body text-start text-800 pt-0">
-                      <strong>This is the third item&apos;s accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It&apos;s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                    <div v-html="example.body" class="accordion-body text-start text-800 pt-0">
                     </div>
                   </div>
                 </perfect-scrollbar>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
         <div class="col-9 bg-white px-0">
           <div class="d-flex align-items-center">
             <input class="h3 border-0 font-weight-normal p-3 mb-0 me-auto"
               :class="{
-                'text-800': topic.showTitle == true,
-                'text-300': topic.showTitle == false
+                'text-800': initialTopic.showTitle == true,
+                'text-300': initialTopic.showTitle == false
               }"
               style="font-family: 'Proxima Nova'; background: transparent; outline: none; min-width: 60%"
               type="text"
               ref="title"
               :disabled="!titleEdit"
-              v-model.lazy="topic.title"
+              v-model.lazy="initialTopic.title"
             />
             <div class="btn btn-outline-dark btn-sm edit-btn me-3"
               @click="startEditing()">
@@ -91,7 +81,7 @@
             </div>
             <div class="form-group form-check mb-0 me-3 ps-0">
               <b-form-checkbox id="showTitle"
-                v-model="topic.showTitle"
+                v-model="initialTopic.showTitle"
                 class="form-check-input"
                 value="true"
                 uncheked-value="false">
@@ -104,16 +94,16 @@
 
           <ckeditor
             :editor="editor"
-            v-model="topic.body"
+            v-model="initialTopic.body"
             :config="editorConfig"
           />
 
           <div class="d-flex col-12 text-right">
-            <div v-if="!savingData"
+            <button
               class="btn btn-phoenix-success btn-sm ms-auto my-2"
               @click="saveData()">
-              Ок, готово!
-            </div>
+              Сохранить изменения!
+            </button>
             <div v-if="!savingData"
               class="btn btn-phoenix-danger btn-sm m-2"
               @click="showModal = false">
@@ -139,18 +129,17 @@
 
 <script setup>
 import { ref, defineProps, computed } from 'vue';
+import { db, doc, setDoc } from '@/firebase';
 
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import '@ckeditor/ckeditor5-build-classic/build/translations/ru';
 
 const props = defineProps(['initialTopic']);
 
-console.log('Props: ', props.initialTopic);
-
 let showModal = ref(false);
 let savingData = ref(false);
 let titleEdit = ref(false);
-let updatedTopic = ref(null);
+let updatedTopic = null;
 let editorConfig = {
   language: 'ru',
   heading: {
@@ -162,15 +151,19 @@ let editorConfig = {
 };
 let editor = ClassicEditor;
 
-let topic = computed({
-  get() {
-    return updatedTopic.value || props.initialTopic;
+const topic = computed({
+  get: () => {
+    if (updatedTopic) {
+      return updatedTopic.value
+    } else {
+      console.log('initialTopic ', props.initialTopic.value )
+      return props.initialTopic.value
+    }
   },
   set(newValue) {
     updatedTopic.value = newValue;
   }
 })
-
 
 function startEditing() {
   startEditing.value = true;
@@ -180,48 +173,30 @@ function startEditing() {
 }
 
 async function saveData() {
-  console.log(updatedTopic.value);
+  const topic = updatedTopic.value;
   savingData.value = true;
-  await this.$store.dispatch('saveTopicData', updatedTopic.value);
+
+  try {
+    const topicDocRef = doc(db, `${topic.path}`);
+    await setDoc(
+      topicDocRef,
+      {
+        title: topic.title,
+        showTitle: topic.showTitle,
+        body: topic.body
+      },
+      {
+        merge: true
+      }
+    );
+  } catch (error) {
+    console.log('Unable save topic updated data: ', error)
+  }
+
   savingData.value = false;
   showModal.value = false;
 }
 
-// export default {
-//   props: ['topic'],
-//   data: () => ({
-//     showModal: false,
-//     savingData: false,
-//     titleEdit: false,
-//     editedTopic: {},
-//     editor: ClassicEditor,
-//     editorConfig: {
-//       language: 'ru',
-//       heading: {
-//         options: [
-//           { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
-//         ]
-//       },
-//        disallowedContent: 'blockquotep p',
-//     }
-//   }),
-
-//   methods: {
-//     startEditing() {
-//       this.titleEdit = true
-//       setTimeout(() => {
-//         this.$refs.title.focus()
-//       }, 100)
-//     },
-//     async saveData() {
-//       console.log(this.topic)
-//       this.savingData = true
-//       await this.$store.dispatch('saveTopicData', this.topic)
-//       this.savingData = false
-//       this.showModal = false
-//     }
-//   }
-// }
 </script>
 
 <style lang="scss">
@@ -264,4 +239,11 @@ async function saveData() {
   height: 58vh;
  }
 
+</style>
+
+<style scoped>
+.accordion-button::after {
+  position: relative;
+  top: 7px;
+}
 </style>

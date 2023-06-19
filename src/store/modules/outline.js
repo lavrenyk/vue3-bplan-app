@@ -1,5 +1,5 @@
 // import Vue from 'vue';
-import { collection, db, getDocs, orderBy, query } from "@/firebase";
+import { collection, db, getDocs, setDoc, doc, orderBy, query } from "@/firebase";
 
 export default {
   state: {
@@ -125,5 +125,30 @@ export default {
       commit('setCurrentOutline', currentOutline)
       return currentOutline;
     },
+
+      // -----------------------------------------
+      //  TOPIC operations section
+
+      // Save TOPIC data from the Editor
+      async saveTopicData({ mutation }, topic) {
+        console.log('topicData: ', topic);
+        try {
+          const topicDocRef = doc(db, `${topic.path}`);
+          await setDoc(
+            topicDocRef,
+            {
+              title: topic.title,
+              showTitle: topic.showTitle,
+              body: topic.body
+            },
+            {
+              merge: true
+            }
+          );
+          mutation('ck');
+        } catch (error) {
+          window.console.log('Unable save topic updated data: ', error)
+        }
+      },
   }
 }
