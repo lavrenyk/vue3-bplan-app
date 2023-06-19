@@ -81,13 +81,11 @@
   </div>
 
   <!-- Модальное окно для редактирования текстовых данных -->
-  <topic-edit-modal v-if="topicToEdit"
-    :initialTopic="topicToEdit" 
-  />
+  <topic-edit-modal v-if="topicToEdit" :initial-topic="topicToEdit" />
 </template>
 
 <script>
-import TopicEditModal from "@/views/app/components/widgets/modals/TopicEditModal.vue"
+import TopicEditModal from "@/views/app/components/widgets/modals/TopicEditModal2.vue"
 
 export default {
   data: () => ({
@@ -113,7 +111,9 @@ export default {
 
   methods: {
     setTopicToEdit(topic) {
+      console.log('Change topic to edit from:',  this.topicToEdit, ' to - ', topic);
       this.topicToEdit = topic;
+      console.log('Current topic to edit is: ', this.topicToEdit);
     },
 
     loadCurrentOutline() {
