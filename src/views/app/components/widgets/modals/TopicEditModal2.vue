@@ -29,15 +29,14 @@
                 data-bs-parent="#helpSection">
                 <perfect-scrollbar>
                   <div class="card-body pt-2 border-top border-100">
-                    <div v-html="topic.desc" class="accordion-body text-start text-800 pt-0 fs--1">
+                    <div v-html="localTopic.desc" class="accordion-body text-start text-800 pt-0 fs--1">
                     </div>
                   </div>
                 </perfect-scrollbar>
-
               </div>
             </div>
-            <!-- <div v-for="(example, index) in topic.examples" :key="example.title"
-              class="accordion-item" :class="{'border-bottom-0': topic.examples.length - 1 == index}">
+            <div v-for="(example, index) in props.initialTopic.examples" :key="example.title"
+              class="accordion-item" :class="{'border-bottom-0': props.initialTopic.examples.length - 1 == index}">
               <h2 class="accordion-header" id="headingTwo">
                 <button class="accordion-button collapsed" type="button"
                   data-bs-toggle="collapse" :data-bs-target="'#example' + index"
@@ -59,17 +58,17 @@
                   </div>
                 </perfect-scrollbar>
               </div>
-            </div> -->
+            </div>
           </div>
         </div>
         <div class="col-9 bg-white px-0">
           <div class="d-flex align-items-center">
             <input class="h3 border-0 font-weight-normal p-3 mb-0 me-auto"
               :class="{
-                'text-800': localTopic.showTitle == true,
-                'text-300': localTopic.showTitle == false
+                'text-800': props.initialTopic.showTitle == true,
+                'text-300': props.initialTopic.showTitle == false
               }"
-              style="font-family: 'Proxima Nova'; background: transparent; outline: none; min-width: 60%"
+              style="background: transparent; outline: none; min-width: 60%"
               type="text"
               ref="title"
               :disabled="!titleEdit"
@@ -81,7 +80,7 @@
             </div>
             <div class="form-group form-check mb-0 me-3 ps-0">
               <b-form-checkbox id="showTitle"
-                v-model="initialTopic.showTitle"
+                v-model="localTopic.showTitle"
                 class="form-check-input"
                 value="true"
                 uncheked-value="false">
@@ -91,12 +90,14 @@
               </b-form-checkbox>
             </div>
           </div>
-
-          <ckeditor
+          <p>
+            {{ props.initialTopic.title }}
+          </p>
+          <!-- <ckeditor
             :editor="editor"
-            v-model="initialTopic.body"
+            v-model="localTopic.body"
             :config="editorConfig"
-          />
+          /> -->
 
           <div class="d-flex col-12 text-right">
             <button
@@ -129,122 +130,23 @@
 
 <script setup>
 import { ref, defineProps, computed } from 'vue';
-import { db, doc, setDoc } from '@/firebase';
-
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import '@ckeditor/ckeditor5-build-classic/build/translations/ru';
 
 const props = defineProps(['initialTopic']);
 
 let showModal = ref(false);
-let savingData = ref(false);
-let titleEdit = ref(false);
-let localTopic = ref(props.initialTopic);
-let editorConfig = {
-  language: 'ru',
-  heading: {
-    options: [
-      { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
-    ]
-  },
-  disallowedContent: 'blockquote p',
-};
-let editor = ClassicEditor;
-
-const topic = computed({
-  get: () => {
-    if (this.localTopic) {
-      console.log('localTopic', this.localTopic);
-      return this.localTopic.value;
+let updatedTopic = null;
+let localTopic = computed({
+  get() {
+    if (!updatedTopic) {
+      return props.initialTopic;
     } else {
-      console.log('initialTopic ', props.initialTopic.value )
-      return props.initialTopic.value
+      return updatedTopic;
     }
-  },
-  set(newValue) {
-    this.localTopic.value = newValue;
-  }
-})
-
-function startEditing() {
-  startEditing.value = true;
-  setTimeout(() => {
-    this.$refs.title.focus()
-  }, 100)
-}
-
-async function saveData() {
-  const topic = this.localTopic.value;
-  savingData.value = true;
-
-  try {
-    const topicDocRef = doc(db, `${topic.path}`);
-    await setDoc(
-      topicDocRef,
-      {
-        title: topic.title,
-        showTitle: topic.showTitle,
-        body: topic.body
-      },
-      {
-        merge: true
-      }
-    );
-  } catch (error) {
-    console.log('Unable save topic updated data: ', error)
-  }
-
-  savingData.value = false;
-  showModal.value = false;
-}
+  } 
+});
 
 </script>
 
-<style lang="scss">
+<style>
 
-.edit-btn {
-  color: rgba(145, 145, 145, 0.2);
-  border-color: rgba(145, 145, 145, 0.2) !important;
-  &:hover {
-    color: rgb(145, 145, 145);
-    border-color: rgb(145, 145, 145) !important;
-  }
-}
-
-.ck {
-  height: 65vh;
-  border: none !important;
-  border-radius: 0 !important;
-}
-
-.ck.ck-reset_all, .ck.ck-reset_all * {
-  // background: #132238 !important;
-  background-color: rgba(var(--phoenix-soft-rgb), var(--phoenix-bg-opacity)) !important;
-  color: #989da3 !important;
-}
-
-.ck-editor__editable {
-    min-height: 65vh !important;
-    border: none;
-    // background-color: #061325 !important;
-    background-color: rgba(var(--phoenix-100-rgb), var(--phoenix-bg-opacity)) !important;
- }
-
- .btn-delete {
-   &:hover {
-     background: #e63757 !important;
-   }
- }
-
- .ps {
-  height: 58vh;
- }
-
-</style>
-
-<style scoped>
-.accordion-button::after {
-  position: relative;
-  top: 7px;
-}
 </style>
