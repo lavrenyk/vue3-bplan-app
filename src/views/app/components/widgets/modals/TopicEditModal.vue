@@ -73,7 +73,7 @@
               type="text"
               ref="title"
               :disabled="!titleEdit"
-              v-model.lazy="initialTopic.title"
+              v-model.lazy="topic.title"
             />
             <div class="btn btn-outline-dark btn-sm edit-btn me-3"
               @click="startEditing()">
@@ -81,7 +81,7 @@
             </div>
             <div class="form-group form-check mb-0 me-3 ps-0">
               <b-form-checkbox id="showTitle"
-                v-model="initialTopic.showTitle"
+                v-model="topic.showTitle"
                 class="form-check-input"
                 value="true"
                 uncheked-value="false">
@@ -94,7 +94,7 @@
 
           <ckeditor
             :editor="editor"
-            v-model="initialTopic.body"
+            v-model="topic.body"
             :config="editorConfig"
           />
 

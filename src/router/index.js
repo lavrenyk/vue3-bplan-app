@@ -114,6 +114,12 @@ const routes = [
     meta: {layout: 'app', auth: true},
     component: () => import('@/views/app/dashboard/DashboardMainView.vue')
   },
+  {
+    path: '/board',
+    name: 'board-page',
+    meta: {layout: 'app', auth: true},
+    component: () => import('@/views/app/dashboard/BoardView.vue')
+  },
 
   // Test section
   {
