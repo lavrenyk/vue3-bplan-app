@@ -128,13 +128,18 @@
               </label>
             </div>
           </div>
-          <router-link to="/registration"
+          <router-link to="/registration" v-if="!isLogin"
             class="btn btn-link text-900 order-1 order-lg-0 ps-3 me-2">
             Регистрация
           </router-link>
-          <router-link to="/login"
+          <router-link to="/login" v-if="!isLogin"
             class="btn btn-phoenix-primary order-0">
             <span class="fw-bold">Вход</span>
+          </router-link>
+          <router-link to="/plan" v-if="isLogin"
+            class="btn btn-phoenix-success order-0">
+            <i class="fas fa-sign-in-alt me-2" aria-hidden="true"></i>
+            <span class="fw-bold">Рабочий кабинет</span>
           </router-link>
         </div>
       </div>
@@ -142,15 +147,20 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { onMounted, computed } from 'vue';
+import { useStore } from 'vuex'
 import ShadowOnScroll from '@/assets/js/misc/navbar-shadow-on-scroll'
 
-export default {
-  mounted() {
-    // loading navigation shadow on scroll
-    ShadowOnScroll()
-  }
-}
+const store = useStore();
+
+onMounted(() => {
+  ShadowOnScroll();
+})
+
+const isLogin = computed(() => store.getters.getUserInfo ? true : false);
+
+
 </script>
 
 <style>

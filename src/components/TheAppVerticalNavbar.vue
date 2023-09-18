@@ -44,6 +44,7 @@
 <script>
 import ProjectsMenu from './app/vertical-menus/ProjectsMenu.vue';
 import BPlanOutlineMenu from './app/vertical-menus/BPlanOutlineMenu.vue';
+import BPlanOutlineEditMenu from './app/vertical-menus/BPlanOutlineEditMenu.vue';
 
 export default {
   data: () => ({
@@ -51,7 +52,8 @@ export default {
   }),
   components: {
     ProjectsMenu,
-    BPlanOutlineMenu
+    BPlanOutlineMenu,
+    BPlanOutlineEditMenu,
   },
   computed: {
     showProjectSelector() {
@@ -66,12 +68,15 @@ export default {
         return null;
       }
     },
+
     verticalMenu() {
       switch (this.$route.name) {
         case 'bplan-projects-page':
           return ProjectsMenu;
         case 'bplan-page':
           return BPlanOutlineMenu;
+        case 'bplan-edit-outline':
+          return BPlanOutlineEditMenu;
         default:
           break;
       }

@@ -62,7 +62,7 @@ const routes = [
   },
   {
     path: '/plan/outline',
-    name: 'plan-outline-page',
+    name: 'bplan-edit-outline',
     meta: {layout: 'app', auth: true},
     component: () => import('@/views/app/plan/PlanOutlineView.vue')
   },

@@ -3,6 +3,7 @@ import { collection, db, getDocs, setDoc, doc, orderBy, query } from "@/firebase
 
 export default {
   state: {
+    loadingOutlineData: false,
     outlineDragging: {status: false, group: {name: 'topic'}},
     outlineTopics: [],
     outlineTables: [],
@@ -13,27 +14,31 @@ export default {
 
   getters: {
     getOutlineDraggingStatus: state => {
-      return state.outlineDragging
+      return state.outlineDragging;
     },
 
-    getCurrentOutline: state => {
-      return state.currentOutline
+    getLoadingOutlineData: state => {
+      return state.loadingOutline;
     },
 
-    outlineTopics: state => {
-      return state.outlineTopics
+    getCurrentOutlineData: state => {
+      return state.currentOutlineData;
     },
 
-    outlineTables: state => {
-      return state.outlineTables
+    getOutlineTopics: state => {
+      return state.outlineTopics;
     },
 
-    outlineCharts: state => {
-      return state.outlineCharts
+    getOutlineTables: state => {
+      return state.outlineTables;
+    },
+
+    getOutlineCharts: state => {
+      return state.outlineCharts;
     },
 
     getSelectedOutlineChapter: state => {
-      return state.selectedOutlineChapter
+      return state.selectedOutlineChapter;
     }
   },
 
@@ -41,6 +46,14 @@ export default {
     setCurrentOutline(state, payload) {
       console.log(payload);
       state.currentOutline = payload
+    },
+
+    setLoadingOutlineData(state, payload) {
+      state.loadingOutline = payload;
+    },
+
+    setSystemTextTopics(state, payload) {
+      state.outlineTopics = payload;
     },
 
     fetchOutlineTopics(state, payload) {
@@ -126,29 +139,63 @@ export default {
       return currentOutline;
     },
 
-      // -----------------------------------------
-      //  TOPIC operations section
+    // -----------------------------------------
+    //  Unused Outline Loading
+    //  Loading Paragraphs, Tables, Graphs in one request
+    async fetchEditOutline({ dispatch, commit }) {
+      commit('setLoadingOutlineData', true);
+      // let uid = auth.currentUser.uid;
+      let outlineTopics = [];
+      // let outlineTables = [];
+      // let outlineCharts = [];
+      const systemTopics = 'system/topics/textTopics';
 
-      // Save TOPIC data from the Editor
-      async saveTopicData({ mutation }, topic) {
-        console.log('topicData: ', topic);
-        try {
-          const topicDocRef = doc(db, `${topic.path}`);
-          await setDoc(
-            topicDocRef,
-            {
-              title: topic.title,
-              showTitle: topic.showTitle,
-              body: topic.body
-            },
-            {
-              merge: true
-            }
-          );
-          mutation('ck');
-        } catch (error) {
-          window.console.log('Unable save topic updated data: ', error)
+      try {
+        const systemOutlineTextTopicsQuery = query(collection(db, `${systemTopics}`), orderBy('id'));
+        const systemOutlineTextTopicsSnap = await getDocs(systemOutlineTextTopicsQuery);
+        // Check if currentOutline loaded else load it
+        if (!this.getters.getCurrentOutline) {
+          await dispatch("fetchCurrentOutline");
         }
-      },
+
+        for (const topic of systemOutlineTextTopicsSnap.docs) {
+          var topicItem = topic.data();
+          topicItem.path = topic.ref.path;
+          outlineTopics.push(topicItem);
+        }
+
+        commit('setSystemTextTopics', outlineTopics);
+        commit('setLoadingOutlineData', false);
+
+      } catch (error) {
+        console.log('Unable to fetch Outline: ', error);
+        commit('setLoadingOutlineData', false);
+      }
+    },
+
+    // -----------------------------------------
+    //  TOPIC operations section
+
+    // Save TOPIC data from the Editor
+    async saveTopicData({ mutation }, topic) {
+      console.log('topicData: ', topic);
+      try {
+        const topicDocRef = doc(db, `${topic.path}`);
+        await setDoc(
+          topicDocRef,
+          {
+            title: topic.title,
+            showTitle: topic.showTitle,
+            body: topic.body
+          },
+          {
+            merge: true
+          }
+        );
+        mutation('ck');
+      } catch (error) {
+        window.console.log('Unable save topic updated data: ', error)
+      }
+    },
   }
 }
