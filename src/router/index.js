@@ -128,6 +128,12 @@ const routes = [
     meta: {layout: 'app', auth: true},
     component: () => import('@/views/app/TestView.vue')
   },
+  {
+    path: '/test2',
+    name: 'test-page',
+    meta: {layout: 'app', auth: true},
+    component: () => import('@/views/app/TestView2.vue')
+  },
 ]
 
 const router = createRouter({
