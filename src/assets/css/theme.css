@@ -11755,9 +11755,14 @@ textarea.form-control-lg {
     color: rgba(var(--phoenix-tertiary-color-rgb), var(--phoenix-text-opacity)) !important;
 }
 
-.text-muted {
+/* .text-muted {
     --phoenix-text-opacity: 1;
     color: #8a94ad !important
+} */
+
+.text-muted {
+    --phoenix-text-opacity: 1;
+    color: var(--phoenix-secondary-color) !important
 }
 
 .text-black-50 {
