@@ -47,9 +47,14 @@ export default defineComponent({
     feather_icons.setAttribute('src', '/assets/vendors/feather-icons/feather.min.js');
     document.body.appendChild(feather_icons);
 
-    let dayjs = document.createElement('script');
-    dayjs.setAttribute('src', '/assets/vendors/dayjs/dayjs.min.js');
-    document.body.appendChild(feather_icons);
+    // let dayjs = document.createElement('script');
+    // dayjs.setAttribute('src', '/assets/vendors/dayjs/dayjs.min.js');
+    // document.body.appendChild(daysjs);
+
+    // let swiper = document.createElement('script')
+    //   swiper.setAttribute('src', '/assets/vendors/swiper/swiper-bundle.min.js')
+    //   swiper.async = true
+    //   document.body.appendChild(swiper)
 
     // let phoenix = document.createElement('script');
     // phoenix.setAttribute('src', '/assets/js/phoenix.js');

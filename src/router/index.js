@@ -130,9 +130,15 @@ const routes = [
   },
   {
     path: '/test2',
-    name: 'test-page',
+    name: 'test-page2',
     meta: {layout: 'app', auth: true},
     component: () => import('@/views/app/TestView2.vue')
+  },
+  {
+    path: '/test3',
+    name: 'test-page3',
+    meta: {layout: 'app', auth: true},
+    component: () => import('@/views/app/TestView3.vue')
   },
 ]
 

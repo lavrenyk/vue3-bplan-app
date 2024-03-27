@@ -11,6 +11,8 @@ import { auth } from '@/firebase'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue-next/dist/bootstrap-vue-next.css'
 import 'vue3-perfect-scrollbar/dist/vue3-perfect-scrollbar.css'
+// import "./assets/vendors/swiper/swiper-bundle.min.css"
+
 
 import './assets/css/theme.css'
 import './assets/css/user.css'

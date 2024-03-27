@@ -1,5 +1,4 @@
-<script setup>
-
+<script>
 </script>
 
 <template>
@@ -169,6 +168,49 @@
               </div>
             </div>
 
+            <div class="col-12 col-lg-6">
+                <div class="row g-3 mb-3">
+                  <div class="col-12 col-md-2 col-lg-12 col-xl-2">
+                    <div class="swiper-products-thumb swiper theme-slider overflow-visible swiper-initialized swiper-vertical swiper-backface-hidden swiper-thumbs" id="swiper-products-thumb"><div class="swiper-wrapper" id="swiper-wrapper-1422830608bc1046b" aria-live="polite" style="transform: translate3d(0px, 0px, 0px); transition-duration: 0ms; transition-delay: 0ms;">
+                      <div class="swiper-slide swiper-slide-visible swiper-slide-fully-visible swiper-slide-active" role="group" aria-label="1 / 3" style="height: 84px; margin-bottom: 16px;">
+            <div class="product-thumb-container p-2 p-sm-3 p-xl-2">
+              <img src="@/assets/img/products/details/blue_front.png" alt="">
+            </div>
+          </div>
+        
+          <div class="swiper-slide swiper-slide-visible swiper-slide-fully-visible swiper-slide-next swiper-slide-thumb-active" role="group" aria-label="2 / 3" style="height: 84px; margin-bottom: 16px;">
+            <div class="product-thumb-container p-2 p-sm-3 p-xl-2">
+              <img src="@/assets/img/products/details/blue_back.png" alt="">
+            </div>
+          </div>
+        
+          <div class="swiper-slide swiper-slide-visible swiper-slide-fully-visible" role="group" aria-label="3 / 3" style="height: 84px; margin-bottom: 16px;">
+            <div class="product-thumb-container p-2 p-sm-3 p-xl-2">
+              <img src="@/assets/img/products/details/blue_side.png" alt="">
+            </div>
+          </div>
+        </div><span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+                  </div>
+                  <div class="col-12 col-md-10 col-lg-12 col-xl-10">
+                    <div class="d-flex align-items-center border border-translucent rounded-3 text-center p-5 h-100">
+                      <div class="swiper theme-slider swiper-initialized swiper-horizontal swiper-backface-hidden" data-thumb-target="swiper-products-thumb" data-products-swiper="{&quot;slidesPerView&quot;:1,&quot;spaceBetween&quot;:16,&quot;thumbsEl&quot;:&quot;.swiper-products-thumb&quot;}"><div class="swiper-wrapper" id="swiper-wrapper-d7bb172a5ec46ac8" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(-411px, 0px, 0px); transition-delay: 0ms;">
+          <div class="swiper-slide swiper-slide-prev" role="group" aria-label="1 / 3" style="width: 411px;">
+            <img class="w-100" src="@/assets/img/products/details/blue_front.png" alt="">
+          </div>
+        
+          <div class="swiper-slide swiper-slide-active" role="group" aria-label="2 / 3" style="width: 411px;">
+            <img class="w-100" src="@/assets/img/products/details/blue_back.png" alt="">
+          </div>
+        
+          <div class="swiper-slide swiper-slide-next" role="group" aria-label="3 / 3" style="width: 411px;">
+            <img class="w-100" src="@/assets/img/products/details/blue_side.png" alt="">
+          </div>
+        </div><span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex"><button class="btn btn-lg btn-outline-warning rounded-pill w-100 me-3 px-2 px-sm-4 fs-9 fs-sm-8"><svg class="svg-inline--fa fa-heart me-2" aria-hidden="true" focusable="false" data-prefix="far" data-icon="heart" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M244 84L255.1 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 0 232.4 0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84C243.1 84 244 84.01 244 84L244 84zM255.1 163.9L210.1 117.1C188.4 96.28 157.6 86.4 127.3 91.44C81.55 99.07 48 138.7 48 185.1V190.9C48 219.1 59.71 246.1 80.34 265.3L256 429.3L431.7 265.3C452.3 246.1 464 219.1 464 190.9V185.1C464 138.7 430.4 99.07 384.7 91.44C354.4 86.4 323.6 96.28 301.9 117.1L255.1 163.9z"></path></svg><!-- <span class="me-2 far fa-heart"></span> Font Awesome fontawesome.com -->Add to wishlist</button><button class="btn btn-lg btn-warning rounded-pill w-100 fs-9 fs-sm-8"><svg class="svg-inline--fa fa-cart-shopping me-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="cart-shopping" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M96 0C107.5 0 117.4 8.19 119.6 19.51L121.1 32H541.8C562.1 32 578.3 52.25 572.6 72.66L518.6 264.7C514.7 278.5 502.1 288 487.8 288H170.7L179.9 336H488C501.3 336 512 346.7 512 360C512 373.3 501.3 384 488 384H159.1C148.5 384 138.6 375.8 136.4 364.5L76.14 48H24C10.75 48 0 37.25 0 24C0 10.75 10.75 0 24 0H96zM128 464C128 437.5 149.5 416 176 416C202.5 416 224 437.5 224 464C224 490.5 202.5 512 176 512C149.5 512 128 490.5 128 464zM512 464C512 490.5 490.5 512 464 512C437.5 512 416 490.5 416 464C416 437.5 437.5 416 464 416C490.5 416 512 437.5 512 464z"></path></svg><!-- <span class="fas fa-shopping-cart me-2"></span> Font Awesome fontawesome.com -->Add to cart</button></div>
+              </div>
 
 
         <ul class="nav nav-underline mb-3 mt-4 fs-9" id="myTab" role="tablist">
