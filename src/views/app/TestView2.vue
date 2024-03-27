@@ -5,6 +5,8 @@ import { Thumbs } from 'swiper/modules';
 
 import 'swiper/css';
 
+import part1_json from '@/assets/demo-data/part1_table_data.json';
+
 export default {
   components: {
     Swiper,
@@ -21,13 +23,23 @@ export default {
     const onSlideChange = () => {
       console.log('slide change');
     };
+    const part_1_table_data = part1_json;
+
+    var tab_number = ref(1);
+    function set_tab_number(number) {
+      tab_number.value == number;
+    }
     return {
       Thumbs,
       thumbsSwiper,
       setThumbsSwiper,
       onSwiper,
       onSlideChange,
+      part_1_table_data,
+      tab_number,
+      set_tab_number
     };
+
   },
 };
 </script>
@@ -38,6 +50,7 @@ export default {
       <div data-list="{&quot;valueNames&quot;:[&quot;country&quot;,&quot;users&quot;,&quot;transactions&quot;,&quot;revenue&quot;,&quot;conv-rate&quot;],&quot;page&quot;:5}">
         <div class="mb-5 mt-7">
           <h3>MAINTENANCE PROGRAM STATUS</h3>
+          {{ tab_number }}
         </div>
         <div class="row g-5 mb-5 mb-lg-8">
           <div class="col-12 col-xl-4 col-xxl-3">
@@ -247,21 +260,21 @@ export default {
 
 
         <ul class="nav nav-underline mb-3 mt-4 fs-9" id="myTab" role="tablist">
-          <li class="nav-item">
+          <li class="nav-item" @click="set_tab_number(1)">
             <a class="nav-link active" id="part1-tab"
               data-bs-toggle="tab" href="#tab-part1" role="tab"
               aria-controls="tab-part1" aria-selected="true">
               PART 1. SCHEDULED MAINTENANCE - AIRCRAFT (RHC RTR 460 MM)
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" @click="set_tab_number(2)">
             <a class="nav-link" id="part2-tab"
               data-bs-toggle="tab" href="#tab-part2" role="tab"
               aria-controls="tab-part2" aria-selected="false">
               PART 2. SCHEDULED MAINTENANCE - ENGINE (Lycoming 60297-10 Operator’s Manual)
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" @click="set_tab_number(3)">
             <a class="nav-link" id="part3-tab"
               data-bs-toggle="tab" href="#tab-part3" role="tab"
               aria-controls="tab-part3" aria-selected="false">
@@ -308,7 +321,7 @@ export default {
                     </th>
                     <th class="border-top border-translucent align-middle text-center border-end"
                       style="width:6%">
-                      Month
+                      Months
                     </th>
                     <th class="border-top border-translucent text-end align-middle text-center border-end"
                       style="width:6%">
@@ -328,7 +341,7 @@ export default {
                     </th>
                     <th class="sort border-top border-translucent text-end pe-0 align-middle text-center border-end"
                       style="width:6%">
-                      Month
+                      Months
                     </th>
                     <th class="sort border-top border-translucent text-end pe-0 align-middle text-center border-end"
                       style="width:6%">
@@ -336,14 +349,16 @@ export default {
                     </th>
                   </tr>
                 </thead>
-                  <tbody class="list" id="table-regions-by-revenue"><tr>
+                <!-- RENDER PART1 TABLE ROWS -->
+                <tbody v-for="item in part_1_table_data" :key="item.id" class="list" id="table-regions-by-revenue">
+                  <tr>
                     <td class="white-space-nowrap py-2 ps-0 country border-end" style="width:32%">
                       <div class="d-flex align-items-center">
-                        <h6 class="mb-0 pe-2">1. </h6>
+                        <h6 class="mb-0 pe-2">{{ item.id }}. </h6>
                         <a href="#!">
                           <div class="d-flex align-items-center">
                             <p class="mb-0 text-primary fw-bold fs-9">
-                              100 hours/12 months inspection - Table 1 RTR 460 MM
+                              {{ item.title }}
                             </p>
                           </div>
                         </a>
@@ -351,562 +366,66 @@ export default {
                     </td>
                     <td class="align-middle py-2 text-center border-end fw-light" style="width:5%">
                       <div class="mb-0 fs--1">
-                        100
+                        {{ item.interval.f_hours || "-" }}
                       </div>
                     </td>
                     <td class="align-middle py-2 text-center border-end" style="width:6%">
                       <div class="mb-0 fs--1">
-                        12
+                        {{ item.interval.months || "-" }}
                       </div>
                     </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">05.07.2022</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:5%">
-                      <div class="mb-0 fs--1">1050,0</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">31.07.2022</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">1150,0</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">85</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">977,1</div>
-                    </td>
-                  </tr>
-                </tbody>
-                <tbody class="list" id="table-regions-by-revenue"><tr>
-                    <td class="white-space-nowrap py-2 ps-0 country border-end" style="width:32%">
-                      <div class="d-flex align-items-center">
-                        <h6 class="mb-0 pe-2">2. </h6>
-                        <a href="#!">
-                          <div class="d-flex align-items-center">
-                            <p class="mb-0 text-primary fw-bold fs-9">
-                              12 years inspection  - Table 1 RTR 460 MM
-                            </p>
-                          </div>
-                        </a>
-                      </div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:5%">
+                    <td v-if="(item.id >= 9 && item.id <= 13)"
+                      class="align-middle py-2 text-center border-end" :colspan="3">
                       <div class="mb-0 fs--1">
-                        -
+                        N/A - as not installed
+                      </div>
+                    </td>
+                    <td v-if="(item.id >=1 && item.id <= 8) || item.id === 14"
+                      class="align-middle py-2 text-center border-end"
+                      style="width:6%">
+                      <div class="mb-0 fs--1">
+                        {{ item.actual_maint.date || "-" }}
+                      </div>
+                    </td>
+                    <td v-if="(item.id >= 1 && item.id <= 8) || item.id === 14"
+                      class="align-middle py-2 text-center border-end" style="width:5%">
+                      <div class="mb-0 fs--1">
+                        {{ item.actual_maint.ac_tt || "-" }}
+                      </div>
+                    </td>
+                    <td v-if="(item.id >= 1 && item.id <= 8) || item.id === 14"
+                      class="align-middle py-2 text-center border-end" style="width:6%">
+                      <div class="mb-0 fs--1">
+                        {{ item.formed_by || "-"}}
                       </div>
                     </td>
                     <td class="align-middle py-2 text-center border-end" style="width:6%">
                       <div class="mb-0 fs--1">
-                        144
+                        {{ item.next_due_plan.date || "-" }}
                       </div>
                     </td>
                     <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">20.06.2015</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:5%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">20.06.2027</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">144</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                  </tr>
-                </tbody>
-                <tbody class="list" id="table-regions-by-revenue"><tr>
-                    <td class="white-space-nowrap py-2 ps-0 country border-end" style="width:32%">
-                      <div class="d-flex align-items-center">
-                        <h6 class="mb-0 pe-2">3. </h6>
-                        <a href="#!">
-                          <div class="d-flex align-items-center">
-                            <p class="mb-0 text-primary fw-bold fs-9">
-                              2200 hours inspection  - Table 1 RTR 460 MM
-                            </p>
-                          </div>
-                        </a>
-                      </div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:5%">
-                      <div class="mb-0 fs--1">2200</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">20.06.2015</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:5%">
-                      <div class="mb-0 fs--1">179,36</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">2200</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">2027,1</div>
-                    </td>
-                  </tr>
-                </tbody>
-                <tbody class="list" id="table-regions-by-revenue"><tr>
-                    <td class="white-space-nowrap py-2 ps-0 country border-end" style="width:32%">
-                      <div class="d-flex align-items-center">
-                        <h6 class="mb-0 pe-2">4. </h6>
-                        <a href="#!">
-                          <div class="d-flex align-items-center">
-                            <p class="mb-0 text-primary fw-bold fs-9">
-                              Lubricate C181-3 bearing  - Table 1 RTR 460 MM
-                            </p>
-                          </div>
-                        </a>
-                      </div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:5%">
-                      <div class="mb-0 fs--1">300</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">36</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">05.07.2022</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:5%">
-                      <div>158,6</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">31.07.2024</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">458,6</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">109</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">285,7</div>
-                    </td>
-                  </tr>
-                </tbody>
-                <tbody class="list" id="table-regions-by-revenue"><tr>
-                    <td class="white-space-nowrap py-2 ps-0 country border-end" style="width:32%">
-                      <div class="d-flex align-items-center">
-                        <h6 class="mb-0 pe-2">5. </h6>
-                        <a href="#!">
-                          <div class="d-flex align-items-center">
-                            <p class="mb-0 text-primary fw-bold fs-9">
-                              Replace hydraulic filter  - Table 1 RTR 460 MM
-                            </p>
-                          </div>
-                        </a>
-                      </div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:5%">
-                      <div class="mb-0 fs--1">300</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:5%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">300</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">127,1</div>
-                    </td>
-                  </tr>
-                </tbody>
-                <tbody class="list" id="table-regions-by-revenue"><tr>
-                    <td class="white-space-nowrap py-2 ps-0 country border-end" style="width:32%">
-                      <div class="d-flex align-items-center">
-                        <h6 class="mb-0 pe-2">6. </h6>
-                        <a href="#!">
-                          <div class="d-flex align-items-center">
-                            <p class="mb-0 text-primary fw-bold fs-9">
-                              Drain and flush gearboxes  - Table 1 RTR 460 MM
-                            </p>
-                          </div>
-                        </a>
-                      </div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:5%">
-                      <div class="mb-0 fs--1">500</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:5%">
-                      <div>-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div>-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div>-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div>500</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">327,1</div>
-                    </td>
-                  </tr>
-                </tbody>
-                <tbody class="list" id="table-regions-by-revenue"><tr>
-                    <td class="white-space-nowrap py-2 ps-0 country border-end" style="width:32%">
-                      <div class="d-flex align-items-center">
-                        <h6 class="mb-0 pe-2">7. </h6>
-                        <a href="#!">
-                          <div class="d-flex align-items-center">
-                            <p class="mb-0 text-primary fw-bold fs-9">
-                              Clean gearbox chip detectors  - Table 1 RTR 460 MM
-                            </p>
-                          </div>
-                        </a>
-                      </div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:5%">
-                      <div class="mb-0 fs--1">500</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">12</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">31.07.2022</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:5%">
-                      <div class="mb-0 fs--1">179,4</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">05.07.2023</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div>679,36</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">97</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">506,5</div>
-                    </td>
-                  </tr>
-                </tbody>
-                <tbody class="list" id="table-regions-by-revenue"><tr>
-                    <td class="white-space-nowrap py-2 ps-0 country border-end" style="width:32%">
-                      <div class="d-flex align-items-center">
-                        <h6 class="mb-0 pe-2">8. </h6>
-                        <a href="#!">
-                          <div class="d-flex align-items-center">
-                            <p class="mb-0 text-primary fw-bold fs-9">
-                              Perform clutch assembly fluid insp. and servicing  - Table 1 RTR 460 MM
-                            </p>
-                          </div>
-                        </a>
-                      </div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:5%">
-                      <div class="mb-0 fs--1">500</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:5%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">500</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">327,1</div>
-                    </td>
-                  </tr>
-                </tbody>
-                <tbody class="list" id="table-regions-by-revenue"><tr>
-                    <td class="white-space-nowrap py-2 ps-0 country border-end" style="width:32%">
-                      <div class="d-flex align-items-center">
-                        <h6 class="mb-0 pe-2">9. </h6>
-                        <a href="#!">
-                          <div class="d-flex align-items-center">
-                            <p class="mb-0 text-primary fw-bold fs-9">
-                              Service collective spring (manual controls)  - Table 1 RTR 460 MM
-                            </p>
-                          </div>
-                        </a>
-                      </div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:5%">
-                      <div class="mb-0 fs--1">500</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%" colspan="3">
-                      <div class="mb-0 fs--1">N/A - as not installed</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                  </tr>
-                </tbody>
-                <tbody class="list" id="table-regions-by-revenue"><tr>
-                    <td class="white-space-nowrap py-2 ps-0 country border-end" style="width:32%">
-                      <div class="d-flex align-items-center">
-                        <h6 class="mb-0 pe-2">10. </h6>
-                        <a href="#!">
-                          <div class="d-flex align-items-center">
-                            <p class="mb-0 text-primary fw-bold fs-9">
-                              Perform pop-out float leak check  - Table 1 RTR 460 MM
-                            </p>
-                          </div>
-                        </a>
-                      </div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:5%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">12</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%" colspan="3">
-                      <div class="mb-0 fs--1">N/A - as not installed</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                  </tr>
-                </tbody>
-                <tbody class="list" id="table-regions-by-revenue"><tr>
-                    <td class="white-space-nowrap py-2 ps-0 country border-end" style="width:32%">
-                      <div class="d-flex align-items-center">
-                        <h6 class="mb-0 pe-2">11. </h6>
-                        <a href="#!">
-                          <div class="d-flex align-items-center">
-                            <p class="mb-0 text-primary fw-bold fs-9">
-                              Perform pop-out float inflation check  - Table 1 RTR 460 MM
-                            </p>
-                          </div>
-                        </a>
-                      </div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:5%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">36</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%" colspan="3">
-                      <div class="mb-0 fs--1">N/A - as not installed</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                  </tr>
-                </tbody>
-                <tbody class="list" id="table-regions-by-revenue"><tr>
-                    <td class="white-space-nowrap py-2 ps-0 country border-end" style="width:32%">
-                      <div class="d-flex align-items-center">
-                        <h6 class="mb-0 pe-2">12. </h6>
-                        <a href="#!">
-                          <div class="d-flex align-items-center">
-                            <p class="mb-0 text-primary fw-bold fs-9">
-                              Perform pop-out float pressure cyl. hydrost. test  - Table 1 RTR 460 MM
-                            </p>
-                          </div>
-                        </a>
-                      </div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:5%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">36</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%" colspan="3">
-                      <div class="mb-0 fs--1">N/A - as not installed</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                  </tr>
-                </tbody>
-                <tbody class="list" id="table-regions-by-revenue"><tr>
-                    <td class="white-space-nowrap py-2 ps-0 country border-end" style="width:32%">
-                      <div class="d-flex align-items-center">
-                        <h6 class="mb-0 pe-2">13. </h6>
-                        <a href="#!">
-                          <div class="d-flex align-items-center">
-                            <p class="mb-0 text-primary fw-bold fs-9">
-                              Pop-out float pressure cylinder maximum life  - Table 1 RTR 460 MM
-                            </p>
-                          </div>
-                        </a>
-                      </div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:5%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">180</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%" colspan="3">
-                      <div class="mb-0 fs--1">N/A - as not installed</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                  </tr>
-                </tbody>
-                <tbody class="list" id="table-regions-by-revenue"><tr>
-                    <td class="white-space-nowrap py-2 ps-0 country border-end" style="width:32%">
-                      <div class="d-flex align-items-center">
-                        <h6 class="mb-0 pe-2">14. </h6>
-                        <a href="#!">
-                          <div class="d-flex align-items-center">
-                            <p class="mb-0 text-primary fw-bold fs-9">
-                              Helicopter weighting&balance - ED-01-15
-                            </p>
-                          </div>
-                        </a>
-                      </div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:5%">
                       <div class="mb-0 fs--1">
-                        -
+                        {{ item.next_due_plan.f_hours || "-" }}
                       </div>
                     </td>
                     <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">120</div>
+                      <div class="mb-0 fs--1">
+                        {{ item.remained.months || "-" }}
+                      </div>
                     </td>
                     <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">20.06.2019</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:5%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">RHC</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">20.06.2023</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">96</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
+                      <div class="mb-0 fs--1">
+                        {{ item.remained.f_hours || "-" }}
+                      </div>
                     </td>
                   </tr>
                 </tbody>
+                <!-- END RENDERING PART 1 TABLE ROWS -->
               </table>
             </div>
           </div>
+
           <div class="tab-pane fade" id="tab-part2" role="tabpanel" aria-labelledby="part2-tab">
             <div class="table-responsive scrollbar">
               <table class="table fs-10 mb-0">

@@ -1,0 +1,296 @@
+[
+  {
+    "id": 1,
+    "title": "100 hours/12 months inspection - Table 1 RTR 460 MM",
+    "interval": {
+      "f_hours": "100",
+      "months": "12"
+    },
+    "actual_maint": {
+      "date": "05.07.2022",
+      "ac_tt": "1050,0"
+    },
+    "formed_by": "",
+    "next_due_plan": {
+      "date": "31.07.2022",
+      "f_hours": "1150"
+    },
+    "remained": {
+      "months": "85",
+      "f_hours": "977,1"
+    }
+  },
+  {
+    "id": 2,
+    "title": "12 years inspection - Table 1 RTR 460 MM",
+    "interval": {
+      "f_hours": "",
+      "months": "144"
+    },
+    "actual_maint": {
+      "date": "20.06.2015",
+      "ac_tt": ""
+    },
+    "formed_by": "",
+    "next_due_plan": {
+      "date": "20.06.2027",
+      "f_hours": ""
+    },
+    "remained": {
+      "months": "144",
+      "f_hours": ""
+    }
+  },
+  {
+    "id": 3,
+    "title": "2200 hours inspection - Table 1 RTR 460 MM",
+    "interval": {
+      "f_hours": "2200",
+      "months": ""
+    },
+    "actual_maint": {
+      "date": "20.06.2015",
+      "ac_tt": "179,36"
+    },
+    "formed_by": "",
+    "next_due_plan": {
+      "date": "",
+      "f_hours": "2200"
+    },
+    "remained": {
+      "months": "",
+      "f_hours": "2027,1"
+    }
+  },
+  {
+    "id": 4,
+    "title": "Lubricate C181-3 bearing - Table 1 RTR 460 MM",
+    "interval": {
+      "f_hours": "300",
+      "months": "36"
+    },
+    "actual_maint": {
+      "date": "05.07.2022",
+      "ac_tt": "158,6"
+    },
+    "formed_by": "",
+    "next_due_plan": {
+      "date": "31.07.2024",
+      "f_hours": "458,6"
+    },
+    "remained": {
+      "months": "109",
+      "f_hours": "285,7"
+    }
+  },
+  {
+    "id": 5,
+    "title": "Replace hydraulic filter - Table 1 RTR 460 MM",
+    "interval": {
+      "f_hours": "300",
+      "months": ""
+    },
+    "actual_maint": {
+      "date": "",
+      "ac_tt": ""
+    },
+    "formed_by": "",
+    "next_due_plan": {
+      "date": "",
+      "f_hours": "300"
+    },
+    "remained": {
+      "months": "",
+      "f_hours": "127,1"
+    }
+  },
+  {
+    "id": 6,
+    "title": "Drain and flush gearboxes - Table 1 RTR 460 MM",
+    "interval": {
+      "f_hours": "500",
+      "months": ""
+    },
+    "actual_maint": {
+      "date": "",
+      "ac_tt": ""
+    },
+    "formed_by": "",
+    "next_due_plan": {
+      "date": "",
+      "f_hours": "500"
+    },
+    "remained": {
+      "months": "",
+      "f_hours": "327,1"
+    }
+  },
+  {
+    "id": 7,
+    "title": "Clean gearbox chip detectors - Table 1 RTR 460 MM",
+    "interval": {
+      "f_hours": "500",
+      "months": "12"
+    },
+    "actual_maint": {
+      "date": "31.07.2022",
+      "ac_tt": "179,4"
+    },
+    "formed_by": "",
+    "next_due_plan": {
+      "date": "05.07.2023",
+      "f_hours": "679,36"
+    },
+    "remained": {
+      "months": "97",
+      "f_hours": "506,5"
+    }
+  },
+  {
+    "id": 8,
+    "title": "Perform clutch assembly fluid insp. and servicing - Table 1 RTR 460 MM",
+    "interval": {
+      "f_hours": "",
+      "months": ""
+    },
+    "actual_maint": {
+      "date": "",
+      "ac_tt": ""
+    },
+    "formed_by": "",
+    "next_due_plan": {
+      "date": "",
+      "f_hours": ""
+    },
+    "remained": {
+      "months": "",
+      "f_hours": ""
+    }
+  },
+  {
+    "id": 9,
+    "title": "Service collective spring (manual controls) - Table 1 RTR 460 MM",
+    "interval": {
+      "f_hours": "500",
+      "months": ""
+    },
+    "actual_maint": {
+      "date": "",
+      "ac_tt": ""
+    },
+    "formed_by": "",
+    "next_due_plan": {
+      "date": "",
+      "f_hours": ""
+    },
+    "remained": {
+      "months": "",
+      "f_hours": ""
+    }
+  },
+  {
+    "id": 10,
+    "title": "Perform pop-out float leak check - Table 1 RTR 460 MM",
+    "interval": {
+      "f_hours": "",
+      "months": "12"
+    },
+    "actual_maint": {
+      "date": "",
+      "ac_tt": ""
+    },
+    "formed_by": "",
+    "next_due_plan": {
+      "date": "",
+      "f_hours": ""
+    },
+    "remained": {
+      "months": "",
+      "f_hours": ""
+    }
+  },
+  {
+    "id": 11,
+    "title": "Perform pop-out float inflation check - Table 1 RTR 460 MM",
+    "interval": {
+      "f_hours": "",
+      "months": "36"
+    },
+    "actual_maint": {
+      "date": "",
+      "ac_tt": ""
+    },
+    "formed_by": "",
+    "next_due_plan": {
+      "date": "",
+      "f_hours": ""
+    },
+    "remained": {
+      "months": "",
+      "f_hours": ""
+    }
+  },
+  {
+    "id": 12,
+    "title": "Perform pop-out float pressure cyl. hydrost. test - Table 1 RTR 460 MM",
+    "interval": {
+      "f_hours": "",
+      "months": "36"
+    },
+    "actual_maint": {
+      "date": "",
+      "ac_tt": ""
+    },
+    "formed_by": "",
+    "next_due_plan": {
+      "date": "",
+      "f_hours": ""
+    },
+    "remained": {
+      "months": "",
+      "f_hours": ""
+    }
+  },
+  {
+    "id": 13,
+    "title": "Pop-out float pressure cylinder maximum life - Table 1 RTR 460 MM",
+    "interval": {
+      "f_hours": "",
+      "months": "180"
+    },
+    "actual_maint": {
+      "date": "",
+      "ac_tt": ""
+    },
+    "formed_by": "",
+    "next_due_plan": {
+      "date": "",
+      "f_hours": ""
+    },
+    "remained": {
+      "months": "",
+      "f_hours": ""
+    }
+  },
+  {
+    "id": 14,
+    "title": "Helicopter weighting&balance - ED-01-15",
+    "interval": {
+      "f_hours": "",
+      "months": "120"
+    },
+    "actual_maint": {
+      "date": "",
+      "ac_tt": ""
+    },
+    "formed_by": "",
+    "next_due_plan": {
+      "date": "",
+      "f_hours": ""
+    },
+    "remained": {
+      "months": "",
+      "f_hours": ""
+    }
+  }
+]
