@@ -1,0 +1,233 @@
+[
+  {
+    "id": 1,
+    "title": "Fire Extinguisher RT-A400 inspection - RHC SL-64A",
+    "interval": {
+      "f_hours": "",
+      "months": "12"
+    },
+    "actual_maint": {
+      "date": "05.07.2022",
+      "ac_tt": "158,0"
+    },
+    "formed_by": "",
+    "next_due_plan": {
+      "date": "05.07.2022",
+      "f_hours": ""
+    },
+    "remained": {
+      "months": "97",
+      "f_hours": ""
+    }
+  },
+  {
+    "id": 2,
+    "title": "Battery Concorde RG-25XC inspection&test - 05-0171 CMM",
+    "interval": {
+      "f_hours": "1000",
+      "months": "12"
+    },
+    "actual_maint": {
+      "date": "22.05.2021",
+      "ac_tt": ""
+    },
+    "formed_by": "",
+    "next_due_plan": {
+      "date": "25.09.2023",
+      "f_hours": "1000,0"
+    },
+    "remained": {
+      "months": "75",
+      "f_hours": "827,1"
+    }
+  },
+  {
+    "id": 3,
+    "title": "Static System Leak Check",
+    "interval": {
+      "f_hours": "",
+      "months": "24"
+    },
+    "actual_maint": {
+      "date": "05.07.2022",
+      "ac_tt": "158.0"
+    },
+    "formed_by": "",
+    "next_due_plan": {
+      "date": "05.07.2024",
+      "f_hours": ""
+    },
+    "remained": {
+      "months": "109",
+      "f_hours": ""
+    }
+  },
+  {
+    "id": 4,
+    "title": "Inspect ELT - Table Kannad / Orolia S.A.S. DOC08038F rev. dated 20.08.2013.",
+    "interval": {
+      "f_hours": "",
+      "months": "4"
+    },
+    "actual_maint": {
+      "date": "N/A",
+      "ac_tt": ""
+    },
+    "formed_by": "",
+    "next_due_plan": {
+      "date": "",
+      "f_hours": ""
+    },
+    "remained": {
+      "months": "",
+      "f_hours": ""
+    }
+  },
+  {
+    "id": 5,
+    "title": "Inspect ELT - Table 1 RTR 460 MM",
+    "interval": {
+      "f_hours": "",
+      "months": "12"
+    },
+    "actual_maint": {
+      "date": "N/A",
+      "ac_tt": ""
+    },
+    "formed_by": "",
+    "next_due_plan": {
+      "date": "",
+      "f_hours": ""
+    },
+    "remained": {
+      "months": "",
+      "f_hours": ""
+    }
+  },
+  {
+    "id": 6,
+    "title": "Magneto left P/N 10-600616-3 inspection - TCM SB643C part II A",
+    "interval": {
+      "f_hours": "100",
+      "months": "12"
+    },
+    "actual_maint": {
+      "date": "05.07.2022",
+      "ac_tt": "158,0"
+    },
+    "formed_by": "",
+    "next_due_plan": {
+      "date": "05.07.2023",
+      "f_hours": "258,0"
+    },
+    "remained": {
+      "months": "97",
+      "f_hours": "85,1"
+    }
+  },
+  {
+    "id": 7,
+    "title": "Magneto right P/N 10-600646-201 inspection - TCM SB643C part II A",
+    "interval": {
+      "f_hours": "100",
+      "months": "12"
+    },
+    "actual_maint": {
+      "date": "05.07.2022",
+      "ac_tt": "158,0"
+    },
+    "formed_by": "",
+    "next_due_plan": {
+      "date": "05.07.2023",
+      "f_hours": "258,0"
+    },
+    "remained": {
+      "months": "97",
+      "f_hours": "85,1"
+    }
+  },
+  {
+    "id": 8,
+    "title": "Magneto left P/N 10-600616-3 inspection - TCM SB643C part II C",
+    "interval": {
+      "f_hours": "500",
+      "months": ""
+    },
+    "actual_maint": {
+      "date": "",
+      "ac_tt": ""
+    },
+    "formed_by": "",
+    "next_due_plan": {
+      "date": "",
+      "f_hours": "500,0"
+    },
+    "remained": {
+      "months": "",
+      "f_hours": "327,1"
+    }
+  },
+  {
+    "id": 9,
+    "title": "Magneto right P/N 10-600646-201 inspection - TCM SB643C part II C",
+    "interval": {
+      "f_hours": "500",
+      "months": ""
+    },
+    "actual_maint": {
+      "date": "",
+      "ac_tt": ""
+    },
+    "formed_by": "",
+    "next_due_plan": {
+      "date": "",
+      "f_hours": "500,0"
+    },
+    "remained": {
+      "months": "",
+      "f_hours": "327,1"
+    }
+  },
+  {
+    "id": 10,
+    "title": "Magneto left P/N 10-600616-3 overhaul - TCM SB643C part II D",
+    "interval": {
+      "f_hours": "",
+      "months": "144"
+    },
+    "actual_maint": {
+      "date": "",
+      "ac_tt": ""
+    },
+    "formed_by": "",
+    "next_due_plan": {
+      "date": "19.05.2031",
+      "f_hours": ""
+    },
+    "remained": {
+      "months": "191",
+      "f_hours": ""
+    }
+  },
+  {
+    "id": 11,
+    "title": "Magneto right P/N 10-600646-201 overhaul - TCM SB643C part II D",
+    "interval": {
+      "f_hours": "",
+      "months": "144"
+    },
+    "actual_maint": {
+      "date": "",
+      "ac_tt": ""
+    },
+    "formed_by": "",
+    "next_due_plan": {
+      "date": "19.05.2031",
+      "f_hours": ""
+    },
+    "remained": {
+      "months": "191",
+      "f_hours": ""
+    }
+  }
+]

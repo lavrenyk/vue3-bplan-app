@@ -6,6 +6,9 @@ import { Thumbs } from 'swiper/modules';
 import 'swiper/css';
 
 import part1_json from '@/assets/demo-data/part1_table_data.json';
+import part2_json from '@/assets/demo-data/part2_table_data.json';
+import part3_json from '@/assets/demo-data/part3_table_data.json';
+import part4_json from '@/assets/demo-data/part4_table_data.json';
 
 export default {
   components: {
@@ -23,11 +26,15 @@ export default {
     const onSlideChange = () => {
       console.log('slide change');
     };
-    const part_1_table_data = part1_json;
+    const part1_table_data = part1_json;
+    const part2_table_data = part2_json;
+    const part3_table_data = part3_json;
+    const part4_table_data = part4_json;
 
-    var tab_number = ref(1);
-    function set_tab_number(number) {
-      tab_number.value == number;
+    const tab_number = ref(1);
+
+    const set_tab_number = (number) => {
+      tab_number.value = number;
     }
     return {
       Thumbs,
@@ -35,7 +42,10 @@ export default {
       setThumbsSwiper,
       onSwiper,
       onSlideChange,
-      part_1_table_data,
+      part1_table_data,
+      part2_table_data,
+      part3_table_data,
+      part4_table_data,
       tab_number,
       set_tab_number
     };
@@ -48,9 +58,8 @@ export default {
   <div class="row gx-6 mb-4 scrollbar">
     <div class="col-12">
       <div data-list="{&quot;valueNames&quot;:[&quot;country&quot;,&quot;users&quot;,&quot;transactions&quot;,&quot;revenue&quot;,&quot;conv-rate&quot;],&quot;page&quot;:5}">
-        <div class="mb-5 mt-7">
+        <div class="mb-5 mt-5">
           <h3>MAINTENANCE PROGRAM STATUS</h3>
-          {{ tab_number }}
         </div>
         <div class="row g-5 mb-5 mb-lg-8">
           <div class="col-12 col-xl-4 col-xxl-3">
@@ -259,29 +268,36 @@ export default {
       </div>
 
 
-        <ul class="nav nav-underline mb-3 mt-4 fs-9" id="myTab" role="tablist">
-          <li class="nav-item" @click="set_tab_number(1)">
-            <a class="nav-link active" id="part1-tab"
-              data-bs-toggle="tab" href="#tab-part1" role="tab"
-              aria-controls="tab-part1" aria-selected="true">
-              PART 1. SCHEDULED MAINTENANCE - AIRCRAFT (RHC RTR 460 MM)
-            </a>
-          </li>
-          <li class="nav-item" @click="set_tab_number(2)">
-            <a class="nav-link" id="part2-tab"
-              data-bs-toggle="tab" href="#tab-part2" role="tab"
-              aria-controls="tab-part2" aria-selected="false">
-              PART 2. SCHEDULED MAINTENANCE - ENGINE (Lycoming 60297-10 Operator’s Manual)
-            </a>
-          </li>
-          <li class="nav-item" @click="set_tab_number(3)">
-            <a class="nav-link" id="part3-tab"
-              data-bs-toggle="tab" href="#tab-part3" role="tab"
-              aria-controls="tab-part3" aria-selected="false">
-              PART 3.
-            </a>
-          </li>
-        </ul>
+      <ul class="nav nav-underline mb-3 mt-4 fs-9" id="myTab" role="tablist">
+        <li class="nav-item" @click="set_tab_number(1)">
+          <a class="nav-link active" id="part1-tab"
+            data-bs-toggle="tab" href="#tab-part1" role="tab"
+            aria-controls="tab-part1" aria-selected="true">
+            {{ tab_number === 1 ? "PART 1. SCHEDULED MAINTENANCE - AIRCRAFT (RHC RTR 460 MM)" : "PART 1" }}
+          </a>
+        </li>
+        <li class="nav-item" @click="set_tab_number(2)">
+          <a class="nav-link" id="part2-tab"
+            data-bs-toggle="tab" href="#tab-part2" role="tab"
+            aria-controls="tab-part2" aria-selected="false">
+            {{ tab_number === 2 ? "PART 2. SCHEDULED MAINTENANCE - ENGINE (Lycoming 60297-10 Operator’s Manual)" : "PART 2" }}
+          </a>
+        </li>
+        <li class="nav-item" @click="set_tab_number(3)">
+          <a class="nav-link" id="part3-tab"
+            data-bs-toggle="tab" href="#tab-part3" role="tab"
+            aria-controls="tab-part3" aria-selected="false">
+            {{ tab_number === 3 ? "PART 3. SCHEDULED MAINTENANCE - EQUIPMENT - VENDORS CMM / CAA REQUIREMENTS" : "PART 3" }}
+          </a>
+        </li>
+        <li class="nav-item" @click="set_tab_number(4)">
+          <a class="nav-link" id="part4-tab"
+            data-bs-toggle="tab" href="#tab-part4" role="tab"
+            aria-controls="tab-part4" aria-selected="false">
+            {{ tab_number === 4 ? "PART 4. SCHEDULED MAINTENANCE - AD/ASB/SB/CEB REQUIREMENTS" : "PART 4" }}
+          </a>
+        </li>
+      </ul>
 
         <div class="tab-content" id="myTabContent">
           <div class="tab-pane fade show active" id="tab-part1" role="tabpanel" aria-labelledby="part1-tab">
@@ -350,7 +366,7 @@ export default {
                   </tr>
                 </thead>
                 <!-- RENDER PART1 TABLE ROWS -->
-                <tbody v-for="item in part_1_table_data" :key="item.id" class="list" id="table-regions-by-revenue">
+                <tbody v-for="item in part1_table_data" :key="item.id" class="list" id="table-regions-by-revenue">
                   <tr>
                     <td class="white-space-nowrap py-2 ps-0 country border-end" style="width:32%">
                       <div class="d-flex align-items-center">
@@ -426,6 +442,7 @@ export default {
             </div>
           </div>
 
+          <!-- PART2 TABLE -->
           <div class="tab-pane fade" id="tab-part2" role="tabpanel" aria-labelledby="part2-tab">
             <div class="table-responsive scrollbar">
               <table class="table fs-10 mb-0">
@@ -491,147 +508,352 @@ export default {
                     </th>
                   </tr>
                 </thead>
-                  <tbody class="list" id="table-regions-by-revenue"><tr>
+                <!-- START RENDERING PART 2 TABLE ROWS -->
+                <tbody v-for="item in part2_table_data" :key="item.id" class="list" id="table-regions-by-revenue">
+                  <tr>
                     <td class="white-space-nowrap py-2 ps-0 country border-end" style="width:32%">
                       <div class="d-flex align-items-center">
-                        <h6 class="mb-0 pe-2">1. </h6>
+                        <h6 class="mb-0 pe-2">{{ item.id }}. </h6>
                         <a href="#!">
                           <div class="d-flex align-items-center">
                             <p class="mb-0 text-primary fw-bold fs-9">
-                              50 hours inspection - Section 4 60297-10 OM
+                              {{ item.title }}
                             </p>
                           </div>
                         </a>
+                      </div>
+                    </td>
+                    <td class="align-middle py-2 text-center border-end fw-light" style="width:5%">
+                      <div class="mb-0 fs--1">
+                        {{ item.interval.f_hours || "-" }}
+                      </div>
+                    </td>
+                    <td class="align-middle py-2 text-center border-end" style="width:6%">
+                      <div class="mb-0 fs--1">
+                        {{ item.interval.months || "-" }}
+                      </div>
+                    </td>
+                    <td class="align-middle py-2 text-center border-end"
+                      style="width:6%">
+                      <div class="mb-0 fs--1">
+                        {{ item.actual_maint.date || "-" }}
                       </div>
                     </td>
                     <td class="align-middle py-2 text-center border-end" style="width:5%">
                       <div class="mb-0 fs--1">
-                        50
+                        {{ item.actual_maint.ac_tt || "-" }}
                       </div>
                     </td>
                     <td class="align-middle py-2 text-center border-end" style="width:6%">
                       <div class="mb-0 fs--1">
-                        -
+                        {{ item.formed_by || "-"}}
                       </div>
                     </td>
                     <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">05.07.2022</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:5%">
-                      <div class="mb-0 fs--1">158,0</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">UA.145.0029</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">208</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">35,1</div>
-                    </td>
-                  </tr>
-                </tbody>
-                <tbody class="list" id="table-regions-by-revenue"><tr>
-                    <td class="white-space-nowrap py-2 ps-0 country border-end" style="width:32%">
-                      <div class="d-flex align-items-center">
-                        <h6 class="mb-0 pe-2">2. </h6>
-                        <a href="#!">
-                          <div class="d-flex align-items-center">
-                            <p class="mb-0 text-primary fw-bold fs-9">
-                              100 hours inspection - Section 4 60297-10 OM
-                            </p>
-                          </div>
-                        </a>
+                      <div class="mb-0 fs--1">
+                        {{ item.next_due_plan.date || "-" }}
                       </div>
                     </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:5%">
-                      <div class="mb-0 fs--1">100</div>
-                    </td>
                     <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">18.07.2018</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:5%">
-                      <div class="mb-0 fs--1">100,5</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">UA.145.0029</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">200,5</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">27,6</div>
-                    </td>
-                  </tr>
-                </tbody>
-                <tbody class="list" id="table-regions-by-revenue"><tr>
-                    <td class="white-space-nowrap py-2 ps-0 country border-end" style="width:32%">
-                      <div class="d-flex align-items-center">
-                        <h6 class="mb-0 pe-2">2. </h6>
-                        <a href="#!">
-                          <div class="d-flex align-items-center">
-                            <p class="mb-0 text-primary fw-bold fs-9">
-                              400 hours inspection - Section 4 60297-10 OM
-                            </p>
-                          </div>
-                        </a>
+                      <div class="mb-0 fs--1">
+                        {{ item.next_due_plan.f_hours || "-" }}
                       </div>
                     </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:5%">
-                      <div class="mb-0 fs--1">300</div>
+                    <td class="align-middle py-2 text-center border-end" style="width:6%">
+                      <div class="mb-0 fs--1">
+                        {{ item.remained.months || "-" }}
+                      </div>
                     </td>
                     <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:5%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">UA.145.0029</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">300</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">-</div>
-                    </td>
-                    <td class="align-middle py-2 text-center border-end" style="width:6%">
-                      <div class="mb-0 fs--1">127,1</div>
+                      <div class="mb-0 fs--1">
+                        {{ item.remained.f_hours || "-" }}
+                      </div>
                     </td>
                   </tr>
                 </tbody>
+                <!-- END RENDERING PART 2 TABLE ROWS -->
               </table>
             </div>
           </div>
+          <!-- END PART2 TABLE -->
+
+          <!-- START PART3 TABLE -->
           <div class="tab-pane fade" id="tab-part3" role="tabpanel" aria-labelledby="part3-tab">
-            <h3>PART 3</h3>
-            Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork.
-          </div>
-            <div class="tab-pane fade show" id="tab-part4" role="tabpanel" aria-labelledby="part4-tab">
-              <h3>PART 4</h3>
-              Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone.
+            <div class="table-responsive scrollbar">
+              <table class="table fs-10 mb-0">
+                <thead>
+                  <tr>
+                    <th class="border-top border-translucent ps-0 align-middle border-end"
+                      style="width:40%"  rowspan="2">
+                      DESCRIPTION/REFERENCE
+                    </th>
+                    <th class="border-top border-translucent align-middle text-center border-end"
+                      style="width:12%" colspan="2">
+                      INTERVAL
+                    </th>
+                    <th class="border-top border-translucent text-end align-middle text-center border-end"
+                      style="width:12%" colspan="2">
+                      ACTUAL MAINT.
+                    </th>
+                    <th class="border-top border-translucent text-end align-middle text-center border-end"
+                      style="width:12%" rowspan="2">
+                      PERFORMED <br>BY
+                    </th>
+                    <th class="border-top border-translucent text-end pe-0 align-middle text-center border-end"
+                      style="width:12%" colspan="2">
+                      NEXT DUE/PLAN
+                    </th>
+                    <th class="border-top border-translucent text-end align-middle text-center border-end"
+                      style="width:12%" colspan="2">
+                      REMAINED
+                    </th>
+                  </tr>
+                  <tr>
+                    <th class="border-top border-translucent align-middle text-center border-end"
+                      style="width:6%">
+                      F.Hours
+                    </th>
+                    <th class="border-top border-translucent align-middle text-center border-end"
+                      style="width:6%">
+                      Month
+                    </th>
+                    <th class="border-top border-translucent text-end align-middle text-center border-end"
+                      style="width:6%">
+                      Date
+                    </th>
+                    <th class="border-top border-translucent text-end align-middle text-center border-end"
+                      style="width:6%">
+                      A/C TT
+                    </th>
+                    <th class="border-top border-translucent text-end pe-0 align-middle text-center border-end"
+                      style="width:6%">
+                      Date
+                    </th>
+                    <th class="border-top border-translucent text-end pe-0 align-middle text-center border-end"
+                      style="width:6%">
+                      F.Hours
+                    </th>
+                    <th class="sort border-top border-translucent text-end pe-0 align-middle text-center border-end"
+                      style="width:6%">
+                      Month
+                    </th>
+                    <th class="sort border-top border-translucent text-end pe-0 align-middle text-center border-end"
+                      style="width:6%">
+                      F.Hours
+                    </th>
+                  </tr>
+                </thead>
+                <!-- START RENDERING PART 3 TABLE ROWS -->
+                <tbody v-for="item in part3_table_data" :key="item.id" class="list" id="table-regions-by-revenue">
+                  <tr>
+                    <td class="white-space-nowrap py-2 ps-0 country border-end" style="width:32%">
+                      <div class="d-flex align-items-center">
+                        <h6 class="mb-0 pe-2">{{ item.id }}. </h6>
+                        <a href="#!">
+                          <div class="d-flex align-items-center">
+                            <p class="mb-0 text-primary fw-bold fs-9">
+                              {{ item.title }}
+                            </p>
+                          </div>
+                        </a>
+                      </div>
+                    </td>
+                    <td class="align-middle py-2 text-center border-end fw-light" style="width:5%">
+                      <div class="mb-0 fs--1">
+                        {{ item.interval.f_hours || "-" }}
+                      </div>
+                    </td>
+                    <td class="align-middle py-2 text-center border-end" style="width:6%">
+                      <div class="mb-0 fs--1">
+                        {{ item.interval.months || "-" }}
+                      </div>
+                    </td>
+                    <td class="align-middle py-2 text-center border-end"
+                      style="width:6%">
+                      <div class="mb-0 fs--1">
+                        {{ item.actual_maint.date || "-" }}
+                      </div>
+                    </td>
+                    <td class="align-middle py-2 text-center border-end" style="width:5%">
+                      <div class="mb-0 fs--1">
+                        {{ item.actual_maint.ac_tt || "-" }}
+                      </div>
+                    </td>
+                    <td class="align-middle py-2 text-center border-end" style="width:6%">
+                      <div class="mb-0 fs--1">
+                        {{ item.formed_by || "-"}}
+                      </div>
+                    </td>
+                    <td class="align-middle py-2 text-center border-end" style="width:6%">
+                      <div class="mb-0 fs--1">
+                        {{ item.next_due_plan.date || "-" }}
+                      </div>
+                    </td>
+                    <td class="align-middle py-2 text-center border-end" style="width:6%">
+                      <div class="mb-0 fs--1">
+                        {{ item.next_due_plan.f_hours || "-" }}
+                      </div>
+                    </td>
+                    <td class="align-middle py-2 text-center border-end" style="width:6%">
+                      <div class="mb-0 fs--1">
+                        {{ item.remained.months || "-" }}
+                      </div>
+                    </td>
+                    <td class="align-middle py-2 text-center border-end" style="width:6%">
+                      <div class="mb-0 fs--1">
+                        {{ item.remained.f_hours || "-" }}
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+                <!-- END RENDERING PART 3 TABLE ROWS -->
+              </table>
             </div>
+          </div>
+          <!-- END PART3 TABLE -->
+
+          <!-- PART4 TABLE -->
+          <div class="tab-pane fade show" id="tab-part4" role="tabpanel" aria-labelledby="part4-tab">
+            <div class="table-responsive scrollbar">
+              <table class="table fs-10 mb-0">
+                <thead>
+                  <tr>
+                    <th class="border-top border-translucent ps-0 align-middle border-end"
+                      style="width:40%"  rowspan="2">
+                      DESCRIPTION/REFERENCE
+                    </th>
+                    <th class="border-top border-translucent align-middle text-center border-end"
+                      style="width:12%" colspan="2">
+                      INTERVAL
+                    </th>
+                    <th class="border-top border-translucent text-end align-middle text-center border-end"
+                      style="width:12%" colspan="2">
+                      ACTUAL MAINT.
+                    </th>
+                    <th class="border-top border-translucent text-end align-middle text-center border-end"
+                      style="width:12%" rowspan="2">
+                      PERFORMED <br>BY
+                    </th>
+                    <th class="border-top border-translucent text-end pe-0 align-middle text-center border-end"
+                      style="width:12%" colspan="2">
+                      NEXT DUE/PLAN
+                    </th>
+                    <th class="border-top border-translucent text-end align-middle text-center border-end"
+                      style="width:12%" colspan="2">
+                      REMAINED
+                    </th>
+                  </tr>
+                  <tr>
+                    <th class="border-top border-translucent align-middle text-center border-end"
+                      style="width:6%">
+                      F.Hours
+                    </th>
+                    <th class="border-top border-translucent align-middle text-center border-end"
+                      style="width:6%">
+                      Month
+                    </th>
+                    <th class="border-top border-translucent text-end align-middle text-center border-end"
+                      style="width:6%">
+                      Date
+                    </th>
+                    <th class="border-top border-translucent text-end align-middle text-center border-end"
+                      style="width:6%">
+                      A/C TT
+                    </th>
+                    <th class="border-top border-translucent text-end pe-0 align-middle text-center border-end"
+                      style="width:6%">
+                      Date
+                    </th>
+                    <th class="border-top border-translucent text-end pe-0 align-middle text-center border-end"
+                      style="width:6%">
+                      F.Hours
+                    </th>
+                    <th class="sort border-top border-translucent text-end pe-0 align-middle text-center border-end"
+                      style="width:6%">
+                      Month
+                    </th>
+                    <th class="sort border-top border-translucent text-end pe-0 align-middle text-center border-end"
+                      style="width:6%">
+                      F.Hours
+                    </th>
+                  </tr>
+                </thead>
+                <!-- START RENDERING PART 4 TABLE ROWS -->
+                <tbody v-for="item in part4_table_data" :key="item.id" class="list" id="table-regions-by-revenue">
+                  <tr>
+                    <td class="white-space-nowrap py-2 ps-0 country border-end" style="width:32%">
+                      <div class="d-flex align-items-center">
+                        <h6 class="mb-0 pe-2">{{ item.id }}. </h6>
+                        <a href="#!">
+                          <div class="d-flex align-items-center">
+                            <p class="mb-0 text-primary fw-bold fs-9">
+                              {{ item.title }}
+                            </p>
+                          </div>
+                        </a>
+                      </div>
+                    </td>
+                    <td class="align-middle py-2 text-center border-end fw-light" style="width:5%">
+                      <div class="mb-0 fs--1">
+                        {{ item.interval.f_hours || "-" }}
+                      </div>
+                    </td>
+                    <td class="align-middle py-2 text-center border-end" style="width:6%">
+                      <div class="mb-0 fs--1">
+                        {{ item.interval.months || "-" }}
+                      </div>
+                    </td>
+                    <td v-if="item.id === 1"
+                      class="align-middle py-2 text-center border-end" :colspan="3">
+                      <div class="mb-0 fs--1">
+                        N/A - as C016-7 installed
+                      </div>
+                    </td>
+                    <td v-if="item.id > 1"
+                      class="align-middle py-2 text-center border-end"
+                      style="width:6%">
+                      <div class="mb-0 fs--1">
+                        {{ item.actual_maint.date || "-" }}
+                      </div>
+                    </td>
+                    <td v-if="item.id > 1"
+                      class="align-middle py-2 text-center border-end" style="width:5%">
+                      <div class="mb-0 fs--1">
+                        {{ item.actual_maint.ac_tt || "-" }}
+                      </div>
+                    </td>
+                    <td v-if="item.id > 1"
+                      class="align-middle py-2 text-center border-end" style="width:6%">
+                      <div class="mb-0 fs--1">
+                        {{ item.formed_by || "-"}}
+                      </div>
+                    </td>
+                    <td class="align-middle py-2 text-center border-end" style="width:6%">
+                      <div class="mb-0 fs--1">
+                        {{ item.next_due_plan.date || "-" }}
+                      </div>
+                    </td>
+                    <td class="align-middle py-2 text-center border-end" style="width:6%">
+                      <div class="mb-0 fs--1">
+                        {{ item.next_due_plan.f_hours || "-" }}
+                      </div>
+                    </td>
+                    <td class="align-middle py-2 text-center border-end" style="width:6%">
+                      <div class="mb-0 fs--1">
+                        {{ item.remained.months || "-" }}
+                      </div>
+                    </td>
+                    <td class="align-middle py-2 text-center border-end" style="width:6%">
+                      <div class="mb-0 fs--1">
+                        {{ item.remained.f_hours || "-" }}
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+                <!-- END RENDERING PART 4 TABLE ROWS -->
+              </table>
+            </div>
+          </div>
         </div>
 
       </div>

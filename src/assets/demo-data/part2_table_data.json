@@ -1,0 +1,65 @@
+[
+  {
+    "id": 1,
+    "title": "50 hours inspection - Section 4 60297-10 OM",
+    "interval": {
+      "f_hours": "50",
+      "months": ""
+    },
+    "actual_maint": {
+      "date": "05.07.2022",
+      "ac_tt": "158,0"
+    },
+    "formed_by": "UA.145.0029",
+    "next_due_plan": {
+      "date": "",
+      "f_hours": "208,0"
+    },
+    "remained": {
+      "months": "",
+      "f_hours": "35,1"
+    }
+  },
+  {
+    "id": 2,
+    "title": "100 hours inspection - Section 4 60297-10 OM",
+    "interval": {
+      "f_hours": "100",
+      "months": ""
+    },
+    "actual_maint": {
+      "date": "07.18.2022",
+      "ac_tt": "100,5"
+    },
+    "formed_by": "UA.145.0029",
+    "next_due_plan": {
+      "date": "",
+      "f_hours": "200,5"
+    },
+    "remained": {
+      "months": "",
+      "f_hours": "27,6"
+    }
+  },
+  {
+    "id": 3,
+    "title": "400 hours inspection - Section 4 60297-10 OM",
+    "interval": {
+      "f_hours": "400",
+      "months": ""
+    },
+    "actual_maint": {
+      "date": "",
+      "ac_tt": ""
+    },
+    "formed_by": "UA.145.0029",
+    "next_due_plan": {
+      "date": "",
+      "f_hours": "300,0"
+    },
+    "remained": {
+      "months": "",
+      "f_hours": "127,1"
+    }
+  }
+]

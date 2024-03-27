@@ -1,0 +1,254 @@
+[
+  {
+    "id": 1,
+    "title": "RHC SB 72A - Main Rotor Blade Bond inspection",
+    "interval": {
+      "f_hours": "100",
+      "months": "4"
+    },
+    "actual_maint": {
+      "date": "",
+      "ac_tt": ""
+    },
+    "formed_by": "",
+    "next_due_plan": {
+      "date": "",
+      "f_hours": ""
+    },
+    "remained": {
+      "months": "",
+      "f_hours": ""
+    }
+  },
+  {
+    "id": 2,
+    "title": "Lycoming SI1129D - Generator Belt Tension",
+    "interval": {
+      "f_hours": "100",
+      "months": ""
+    },
+    "actual_maint": {
+      "date": "05.07.2022",
+      "ac_tt": "158,0"
+    },
+    "formed_by": "",
+    "next_due_plan": {
+      "date": "",
+      "f_hours": "258,0"
+    },
+    "remained": {
+      "months": "",
+      "f_hours": "85,1"
+    }
+  },
+  {
+    "id": 3,
+    "title": "Lycoming SI1191A - Cylinder Compression",
+    "interval": {
+      "f_hours": "100",
+      "months": ""
+    },
+    "actual_maint": {
+      "date": "05.07.2022",
+      "ac_tt": "158,0"
+    },
+    "formed_by": "",
+    "next_due_plan": {
+      "date": "",
+      "f_hours": "258,0"
+    },
+    "remained": {
+      "months": "",
+      "f_hours": "85,1"
+    }
+  },
+  {
+    "id": 4,
+    "title": "Lycoming SI1009BE - Time Between Overhaul (TBO) Schedules",
+    "interval": {
+      "f_hours": "",
+      "months": "12"
+    },
+    "actual_maint": {
+      "date": "",
+      "ac_tt": "158,0"
+    },
+    "formed_by": "",
+    "next_due_plan": {
+      "date": "19.06.2030",
+      "f_hours": ""
+    },
+    "remained": {
+      "months": "180",
+      "f_hours": ""
+    }
+  },
+  {
+    "id": 5,
+    "title": "Lycoming SI1080C - Maintenance Items for Special Attention",
+    "interval": {
+      "f_hours": "50",
+      "months": ""
+    },
+    "actual_maint": {
+      "date": "05.07.2022",
+      "ac_tt": "158,0"
+    },
+    "formed_by": "",
+    "next_due_plan": {
+      "date": "",
+      "f_hours": "208,0"
+    },
+    "remained": {
+      "months": "",
+      "f_hours": "35,1"
+    }
+  },
+  {
+    "id": 6,
+    "title": "Lycoming SB480F - Oil & Oil Filter Change",
+    "interval": {
+      "f_hours": "50",
+      "months": "4"
+    },
+    "actual_maint": {
+      "date": "09.03.2023",
+      "ac_tt": "172,0"
+    },
+    "formed_by": "",
+    "next_due_plan": {
+      "date": "09.07.2023",
+      "f_hours": "222,0"
+    },
+    "remained": {
+      "months": "97",
+      "f_hours": "49,1"
+    }
+  },
+  {
+    "id": 7,
+    "title": "Lycoming SB301B - Limitations for valves",
+    "interval": {
+      "f_hours": "300",
+      "months": ""
+    },
+    "actual_maint": {
+      "date": "",
+      "ac_tt": ""
+    },
+    "formed_by": "",
+    "next_due_plan": {
+      "date": "",
+      "f_hours": "300,0"
+    },
+    "remained": {
+      "months": "",
+      "f_hours": "127,1"
+    }
+  },
+  {
+    "id": 8,
+    "title": "Lycoming SB388C - Exhaust valve and guide condition",
+    "interval": {
+      "f_hours": "300",
+      "months": ""
+    },
+    "actual_maint": {
+      "date": "",
+      "ac_tt": ""
+    },
+    "formed_by": "",
+    "next_due_plan": {
+      "date": "",
+      "f_hours": "300,0"
+    },
+    "remained": {
+      "months": "",
+      "f_hours": "127,1"
+    }
+  },
+  {
+    "id": 9,
+    "title": "Lycoming SB366C - Carburetor Throttle Body Inspection",
+    "interval": {
+      "f_hours": "50",
+      "months": ""
+    },
+    "actual_maint": {
+      "date": "05.07.2022",
+      "ac_tt": "158,0"
+    },
+    "formed_by": "",
+    "next_due_plan": {
+      "date": "",
+      "f_hours": "208,0"
+    },
+    "remained": {
+      "months": "",
+      "f_hours": "35,1"
+    }
+  },
+  {
+    "id": 10,
+    "title": "CMI SB658 - Distributor gear maintenance",
+    "interval": {
+      "f_hours": "500",
+      "months": "144"
+    },
+    "actual_maint": {
+      "date": "",
+      "ac_tt": ""
+    },
+    "formed_by": "",
+    "next_due_plan": {
+      "date": "20.06.2027",
+      "f_hours": "500,0"
+    },
+    "remained": {
+      "months": "144",
+      "f_hours": "327,1"
+    }
+  },
+  {
+    "id": 11,
+    "title": "CMI SB663A - Magneto Tachometer Contact",
+    "interval": {
+      "f_hours": "500",
+      "months": "144"
+    },
+    "actual_maint": {
+      "date": "",
+      "ac_tt": ""
+    },
+    "formed_by": "",
+    "next_due_plan": {
+      "date": "20.06.2027",
+      "f_hours": "500"
+    },
+    "remained": {
+      "months": "144",
+      "f_hours": "327,1"
+    }
+  },
+  {
+    "id": 12,
+    "title": "CMI SB 670 - Repl. and maintenance of Magneto Distributor Block",
+    "interval": {
+      "f_hours": "500",
+      "months": "144"
+    },
+    "actual_maint": {
+      "date": "",
+      "ac_tt": ""
+    },
+    "formed_by": "",
+    "next_due_plan": {
+      "date": "20.06.2027",
+      "f_hours": "500"
+    },
+    "remained": {
+      "months": "144",
+      "f_hours": "327,1"
+    }
+  }
+]
